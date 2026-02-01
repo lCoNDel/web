@@ -1,1365 +1,1196 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Implementación de Inteligencia Artificial Local para Touron S.A. & Mercury">
-    <meta name="keywords" content="IA local, Touron, Mercury, inteligencia artificial, sistema interno">
-    <meta name="author" content="Luis Conde Blanco - Touron S.A.">
-    <title>Sistema IA Local - Touron S.A. & Mercury | Implementación Interna</title>
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        :root {
-            --touron-blue: #002e5b;
-            --touron-red: #e30613;
-            --touron-light: #f4f7f9;
-            --touron-gold: #ffc107;
-            --touron-green: #10b981;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Implementación de Inteligencia Artificial Local para Touron S.A. & Mercury">
+<meta name="keywords" content="IA local, Touron, Mercury, inteligencia artificial, sistema interno">
+<meta name="author" content="Luis Conde Blanco - Touron S.A.">
+<title>Sistema IA Local - Touron S.A. & Mercury | Implementación Interna</title>
+<link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+:root {
+--touron-blue: #002e5b;
+--touron-red: #e30613;
+--touron-light: #f4f7f9;
+--touron-gold: #ffc107;
+--touron-green: #10b981;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
 
-        body { 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        h1, h2, h3, h4, .font-touron { 
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .bg-touron-blue { background-color: var(--touron-blue); }
-        .text-touron-blue { color: var(--touron-blue); }
-        .bg-touron-red { background-color: var(--touron-red); }
-        .text-touron-red { color: var(--touron-red); }
-        
-        /* Hero Section con Parallax */
-        .hero-gradient { 
-            background: linear-gradient(135deg, #002e5b 0%, #001a33 50%, #000f1f 100%);
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-        }
+/* --- CLAVE 1: Configuración de Snap Scrolling --- */
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
 
-        .parallax-layer {
-            position: absolute;
-            width: 110%;
-            height: 110%;
-            will-change: transform;
-        }
+.section {
+    scroll-snap-align: start;
+}
 
-        .particles-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.3;
-        }
+body {
+font-family: 'Inter', sans-serif;
+line-height: 1.6;
+overflow-x: hidden;
+scrollbar-width: none;
+}
 
-        /* Animaciones de aparición */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+body::-webkit-scrollbar {
+    display: none;
+}
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+h1, h2, h3, h4, .font-touron {
+font-family: 'Montserrat', sans-serif;
+}
 
-        .slide-left {
-            opacity: 0;
-            transform: translateX(-100px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+.bg-touron-blue { background-color: var(--touron-blue); }
+.text-touron-blue { color: var(--touron-blue); }
+.bg-touron-red { background-color: var(--touron-red); }
+.text-touron-red { color: var(--touron-red); }
 
-        .slide-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
+.hero-gradient {
+background: linear-gradient(135deg, #002e5b 0%, #001a33 50%, #000f1f 100%);
+position: relative;
+}
 
-        .slide-right {
-            opacity: 0;
-            transform: translateX(100px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+.hero-pattern {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+opacity: 0.05;
+background-image:
+repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px),
+repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px);
+}
 
-        .slide-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
+.antigravity-gradient {
+background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #002e5b 100%);
+border: 1px solid rgba(255,255,255,0.1);
+position: relative;
+overflow: hidden;
+}
 
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+.card-hover {
+transition: all 0.4s ease;
+}
 
-        .scale-in.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
+.card-hover:hover {
+transform: translateY(-8px);
+box-shadow: 0 20px 40px rgba(0, 46, 91, 0.2);
+}
 
-        /* Efecto de texto typewriter */
-        .typewriter {
-            overflow: hidden;
-            white-space: nowrap;
-            animation: typing 3s steps(40, end);
-        }
+.eco-gradient {
+background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #002e5b 100%);
+position: relative;
+}
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
+.touron-logo-new {
+font-weight: 900;
+letter-spacing: -3px;
+display: inline-flex;
+align-items: center;
+color: #ffffff;
+}
 
-        /* Contador animado */
-        .counter {
-            display: block;
-            font-size: 3rem;
-            font-weight: bold;
-        }
+.touron-logo-new span {
+color: #3b82f6;
+}
 
-        /* Tarjetas 3D */
-        .card-3d {
-            transform-style: preserve-3d;
-            transition: transform 0.6s;
-        }
+.mockup-window {
+background: #e5e7eb;
+border-radius: 8px 8px 0 0;
+height: 20px;
+display: flex;
+align-items: center;
+padding: 0 8px;
+gap: 4px;
+}
 
-        .card-3d:hover {
-            transform: rotateY(10deg) rotateX(-10deg) scale(1.05);
-        }
+.mockup-dot {
+width: 6px;
+height: 6px;
+border-radius: 50%;
+background: #9ca3af;
+}
 
-        /* Sección con scroll snap */
-        .scroll-section {
-            scroll-snap-align: start;
-            min-height: 100vh;
-        }
+.mockup-dot:first-child { background: #ef4444; }
+.mockup-dot:nth-child(2) { background: #eab308; }
+.mockup-dot:nth-child(3) { background: #10b981; }
 
-        html {
-            scroll-snap-type: y mandatory;
-        }
+.mockup-content {
+background: #1f2937;
+border-radius: 0 0 8px 8px;
+padding: 12px;
+font-family: 'Courier New', monospace;
+font-size: 10px;
+color: #10b981;
+min-height: 100px;
+}
 
-        /* Gradientes animados */
-        .animated-gradient {
-            background: linear-gradient(270deg, #002e5b, #001a33, #000f1f);
-            background-size: 600% 600%;
-            animation: gradientShift 10s ease infinite;
-        }
+.dept-visual {
+height: 140px;
+background: #f8fafc;
+border-radius: 12px;
+margin-bottom: 1.5rem;
+position: relative;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 2px solid #e2e8f0;
+transition: all 0.3s ease;
+}
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50% }
-            50% { background-position: 100% 50% }
-            100% { background-position: 0% 50% }
-        }
+.dept-visual:hover {
+transform: scale(1.02);
+border-color: var(--touron-blue);
+}
 
-        /* Línea de progreso mejorada */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--touron-red), var(--touron-blue));
-            z-index: 9999;
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 46, 91, 0.5);
-        }
+.scroll-reveal {
+opacity: 0;
+filter: blur(5px);
+transform: translateY(50px);
+transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+            filter 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+            transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-        /* Indicador de scroll */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
+.scroll-reveal.revealed {
+opacity: 1;
+filter: blur(0);
+transform: translateY(0);
+}
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-20px); }
-            60% { transform: translateX(-50%) translateY(-10px); }
-        }
+.scroll-reveal.stagger-1 { transition-delay: 0.1s; }
+.scroll-reveal.stagger-2 { transition-delay: 0.2s; }
+.scroll-reveal.stagger-3 { transition-delay: 0.3s; }
+.scroll-reveal.stagger-4 { transition-delay: 0.4s; }
+.scroll-reveal.stagger-5 { transition-delay: 0.5s; }
+.scroll-reveal.stagger-6 { transition-delay: 0.6s; }
 
-        /* Navegación flotante mejorada */
-        .floating-nav {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(0,46,91,0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 50px;
-            padding: 15px 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            display: none;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
+.floating-nav {
+position: fixed;
+bottom: 20px;
+right: 20px;
+z-index: 1000;
+background: rgba(0,46,91,0.95);
+backdrop-filter: blur(10px);
+border-radius: 50px;
+padding: 10px 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+opacity: 0;
+transform: translateY(20px);
+transition: opacity 0.4s ease, transform 0.4s ease;
+}
 
-        /* Efectos hover avanzados */
-        .hover-lift {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+.floating-nav.visible {
+opacity: 1;
+transform: translateY(0);
+}
 
-        .hover-lift:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 46, 91, 0.3);
-        }
+.progress-bar {
+position: fixed;
+top: 0;
+left: 0;
+height: 3px;
+background: linear-gradient(90deg, var(--touron-red), var(--touron-blue));
+z-index: 9999;
+transition: width 0.3s ease;
+}
 
-        /* Grid de tarjetas con animación escalonada */
-        .stagger-grid > * {
-            transition-delay: calc(var(--stagger) * 0.1s);
-        }
+.benefit-card {
+background: white;
+border: 1px solid #e2e8f0;
+}
 
-        /* Sección de características con fondo animado */
-        .feature-bg {
-            position: relative;
-            overflow: hidden;
-        }
+.stats-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 2rem;
+padding: 2rem;
+background: rgba(255,255,255,0.05);
+border-radius: 1rem;
+}
 
-        .feature-bg::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0,46,91,0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
+.stat-item {
+text-align: center;
+padding: 1rem;
+}
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+.author-credit {
+position: absolute;
+bottom: 20px;
+right: 30px;
+font-size: 10px;
+color: rgba(255,255,255,0.3);
+font-style: italic;
+letter-spacing: 1px;
+}
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .floating-nav {
-                display: block;
-                bottom: 20px;
-                right: 20px;
-                top: auto;
-            }
-            
-            .hero-gradient {
-                min-height: 100vh;
-            }
-            
-            .counter {
-                font-size: 2rem;
-            }
-        }
+.footer-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: visible;
+}
 
-        /* Loading animation */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #002e5b;
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        /* Navbar sticky */
-        .navbar-sticky {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-sticky.scrolled {
-            background: rgba(0,46,91,0.95);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-    </style>
+@media (max-width: 768px) {
+.floating-nav {
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 16px;
+}
+.author-credit {
+    bottom: 10px;
+    right: 20px;
+    font-size: 8px;
+}
+}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="text-white text-6xl font-bold animate-pulse">
-            <span class="text-blue-400">Touron</span> IA
-        </div>
-    </div>
+<body>
 
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progressBar"></div>
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
 
-    <!-- Navigation -->
-    <nav class="navbar-sticky px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="text-white text-2xl font-bold">
-                <span class="text-blue-400">Touron</span> IA
-            </div>
-            <div class="hidden md:flex gap-6">
-                <a href="#hero" class="text-white hover:text-blue-300 transition">Inicio</a>
-                <a href="#arquitectura" class="text-white hover:text-blue-300 transition">Arquitectura</a>
-                <a href="#desarrollo" class="text-white hover:text-blue-300 transition">Desarrollo</a>
-                <a href="#departamentos" class="text-white hover:text-blue-300 transition">Departamentos</a>
-                <a href="#cross" class="text-white hover:text-blue-300 transition">Cross-Data</a>
-                <a href="#impacto" class="text-white hover:text-blue-300 transition">Impacto</a>
-            </div>
-        </div>
-    </nav>
+<!-- Floating Navigation -->
+<nav class="floating-nav" id="floatingNav">
+<div class="flex gap-4">
+<a href="#arquitectura" class="text-white hover:text-blue-300 transition">
+<i class="fas fa-server"></i>
+</a>
+<a href="#antigravity" class="text-white hover:text-blue-300 transition">
+<i class="fas fa-code"></i>
+</a>
+<a href="#casos" class="text-white hover:text-blue-300 transition">
+<i class="fas fa-briefcase"></i>
+</a>
+<a href="#cross-analysis" class="text-white hover:text-blue-300 transition">
+<i class="fas fa-project-diagram"></i>
+</a>
+<a href="#impacto" class="text-white hover:text-blue-300 transition">
+<i class="fas fa-leaf"></i>
+</a>
+</div>
+</nav>
 
-    <!-- Hero Section con Parallax -->
-    <header id="hero" class="hero-gradient animated-gradient text-white scroll-section relative">
-        <canvas class="particles-canvas" id="particlesCanvas"></canvas>
+<!-- Header Section -->
+<header id="header" class="hero-gradient text-white text-center section relative">
+<div class="hero-pattern"></div>
+
+<div class="max-w-5xl mx-auto relative z-10 flex flex-col justify-center h-full px-6">
+<div class="touron-logo-new text-6xl md:text-7xl mb-8 scroll-reveal">
+Touron S.A<span>.</span>
+</div>
+
+<h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight scroll-reveal stagger-1">
+INTELIGENCIA ARTIFICIAL <span class="text-blue-300 font-light italic">LOCAL</span>
+</h1>
+<p class="text-xl md:text-2xl opacity-90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed scroll-reveal stagger-2">
+Sistema interno de IA con datos locales y control total.
+<span class="text-yellow-300 font-bold">Infraestructura propia</span>
+para procesamiento seguro de información corporativa.
+</p>
+
+<!-- Autor de la Propuesta -->
+<div class="mb-8 bg-white/10 backdrop-blur-md rounded-xl p-4 inline-block border border-white/20 scroll-reveal stagger-3">
+<p class="text-sm font-medium">
+<i class="fas fa-user-tie mr-2 text-yellow-300"></i>
+Propuesta desarrollada por:
+<span class="font-bold text-yellow-300">Luis Conde Blanco</span>
+</p>
+<p class="text-xs opacity-80 mt-1">
+Departamento de Sistemas - Touron S.A.
+</p>
+</div>
+
+<div class="stats-grid mb-12 max-w-4xl mx-auto scroll-reveal stagger-4">
+<div class="stat-item">
+<div class="text-3xl font-bold text-yellow-300">0€/mes</div>
+<div class="text-sm opacity-80">Sin costes por licencia</div>
+</div>
+<div class="stat-item">
+<div class="text-3xl font-bold text-green-300">100%</div>
+<div class="text-sm opacity-80">Datos en red local</div>
+</div>
+<div class="stat-item">
+<div class="text-3xl font-bold text-blue-300">0€/h</div>
+<div class="text-sm opacity-80">Consultoría externa</div>
+</div>
+</div>
+
+<div class="flex flex-wrap justify-center gap-6 scroll-reveal stagger-5">
+<a href="#arquitectura" class="bg-touron-red hover:bg-red-600 text-white px-10 py-4 rounded-md font-bold transition-all shadow-xl uppercase text-sm tracking-wider">
+<i class="fas fa-microchip mr-2"></i>
+Ver Arquitectura
+</a>
+<a href="#antigravity" class="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-md font-bold transition-all shadow-xl uppercase text-sm tracking-wider">
+<i class="fas fa-rocket mr-2"></i>
+Desarrollo
+</a>
+</div>
+</div>
+</header>
+
+<!-- Sección Técnica: Arquitectura -->
+<section id="arquitectura" class="px-6 section flex flex-col justify-center">
+<div class="max-w-7xl mx-auto w-full">
+<div class="text-center mb-16 scroll-reveal">
+<div class="inline-flex items-center gap-2 mb-4">
+<div class="w-12 h-0.5 bg-touron-red"></div>
+<i class="fas fa-server text-touron-blue text-2xl"></i>
+<div class="w-12 h-0.5 bg-touron-red"></div>
+</div>
+<h2 class="text-3xl md:text-4xl font-bold text-touron-blue mb-2 uppercase tracking-tight">Arquitectura de la plataforma IA</h2>
+<p class="text-gray-600 text-lg md:text-xl font-medium italic">Infraestructura local para despliegue</p>
+<div class="h-1.5 w-24 bg-touron-red mx-auto mt-6 rounded-full"></div>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- ... (Tarjetas de Arquitectura: Docker, Ollama, etc.) ... -->
+<!-- Docker -->
+<div class="benefit-card bg-white rounded-xl shadow-lg card-hover scroll-reveal stagger-1">
+<div class="p-6">
+<div class="mockup-window mb-3">
+<div class="mockup-dot"></div>
+<div class="mockup-dot"></div>
+<div class="mockup-dot"></div>
+</div>
+<div class="mockup-content text-[10px]">
+<span class="text-blue-400">touron@server:~$</span> docker ps<br>
+<span class="text-white">CONTAINER ID IMAGE STATUS</span><br>
+<span class="text-yellow-400">7f8e9a2b ollama Up 12d</span><br>
+<span class="text-green-400">3d4f5g6h open-webui Up 12d</span>
+</div>
+<div class="mt-6">
+<h3 class="font-bold text-xl text-touron-blue mb-0 uppercase tracking-tight">Docker</h3>
+<p class="text-touron-red text-[10px] font-bold uppercase mb-2 tracking-widest">Virtualización</p>
+<p class="text-gray-600 text-xs text-justify leading-relaxed">
+Contenerización de servicios para despliegue rápido.
+<span class="font-semibold text-green-600">Aislamiento total</span>
+de cada componente del sistema.
+</p>
+</div>
+</div>
+</div>
+
+<!-- Ollama -->
+<div class="benefit-card bg-white rounded-xl shadow-lg card-hover scroll-reveal stagger-2">
+<div class="p-6">
+<div class="mockup-window mb-3">
+<div class="mockup-dot"></div>
+<div class="mockup-dot"></div>
+</div>
+<div class="mockup-content bg-black text-[10px]">
+<span class="text-pink-500">ollama run llama3.1</span><br>
+<span class="text-green-400">success: model loaded</span><br>
+<span class="text-white">>>> Análisis de reparaciones Q4...</span>
+</div>
+<div class="mt-6">
+<h3 class="font-bold text-xl text-touron-blue mb-0 uppercase tracking-tight">Ollama</h3>
+<p class="text-touron-red text-[10px] font-bold uppercase mb-2 tracking-widest">Motor IA</p>
+<p class="text-gray-600 text-xs text-justify leading-relaxed">
+Motor de IA para ejecución local.
+<span class="font-semibold text-blue-600">Procesamiento interno</span>
+de datos históricos de la empresa.
+</p>
+</div>
+</div>
+</div>
+
+<!-- Open WebUI -->
+<div class="benefit-card bg-white rounded-xl shadow-lg card-hover scroll-reveal stagger-3">
+<div class="p-6">
+<div class="mockup-window mb-3">
+<div class="mockup-dot"></div>
+</div>
+<div class="mockup-content bg-gray-50 text-gray-800 font-sans p-3">
+<div class="ui-chat-bubble text-[8px] bg-touron-blue text-white p-2 rounded mb-2">
+Análisis de tendencias de ventas 2024...
+</div>
+<div class="h-2 w-3/4 bg-gray-200 rounded mb-1"></div>
+<div class="h-2 w-1/2 bg-gray-200 rounded"></div>
+</div>
+<div class="mt-6">
+<h3 class="font-bold text-xl text-touron-blue mb-0 uppercase tracking-tight">Open WebUI</h3>
+<p class="text-touron-red text-[10px] font-bold uppercase mb-2 tracking-widest">Interfaz</p>
+<p class="text-gray-600 text-xs text-justify leading-relaxed">
+Portal para análisis de datos internos.
+<span class="font-semibold text-purple-600">Acceso centralizado</span>
+a información corporativa.
+</p>
+</div>
+</div>
+</div>
+
+<!-- Hardware -->
+<div class="benefit-card bg-white rounded-xl shadow-lg card-hover scroll-reveal stagger-4">
+<div class="p-6">
+<div class="mockup-content bg-blue-950 flex flex-col items-center justify-center text-[10px] min-h-[120px]">
+<span class="text-blue-200 uppercase font-bold mb-2">GPU ACCELERATION: ACTIVE</span>
+<div class="w-full bg-blue-900 h-2 mt-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-blue-400 to-green-400 w-3/4 h-full rounded-full"></div>
+</div>
+<div class="text-green-400 mt-2 text-xs">Procesando datos históricos</div>
+</div>
+<div class="mt-6">
+<h3 class="font-bold text-xl text-touron-blue mb-0 uppercase tracking-tight">Infraestructura</h3>
+<p class="text-touron-red text-[10px] font-bold uppercase mb-2 tracking-widest">Recursos</p>
+<p class="text-gray-600 text-xs text-justify leading-relaxed">
+Servidor con GPU dedicadas.
+<span class="font-semibold text-green-600">Análisis masivo</span>
+de datos de ventas, reparaciones y stock.
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Sección Desarrollo -->
+<section id="antigravity" class="bg-slate-900 text-white px-6 section flex flex-col justify-center scroll-reveal-parent">
+<div class="max-w-7xl mx-auto w-full">
+<div class="flex flex-col items-center text-center mb-16 scroll-reveal">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
+<i class="fas fa-code text-white text-xl"></i>
+</div>
+<h2 class="text-3xl md:text-4xl font-bold uppercase tracking-tight">Plataforma de Desarrollo (Antigravity)</h2>
+</div>
+<p class="text-blue-200 text-lg md:text-xl font-medium max-w-3xl uppercase tracking-wider">Capacidades Internas</p>
+<div class="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 mt-6 rounded-full"></div>
+</div>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- ... (Tarjetas de Antigravity: Análisis de Datos, Documentación Técnica, etc.) ... -->
+<div class="antigravity-gradient p-8 rounded-2xl card-hover scroll-reveal stagger-1">
+<div class="flex items-center gap-3 mb-4">
+<i class="fas fa-cogs text-blue-400 text-2xl"></i>
+<h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Análisis de Datos</h3>
+</div>
+<p class="text-sm text-gray-300 mb-6">
+Procesamiento masivo de históricos de ventas, reparaciones y stock para identificar patrones y tendencias.
+</p>
+<div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-blue-300">
+<span class="text-gray-500">// Análisis de tendencias</span><br>
+analyze_sales_trends(2019-2024)<br>
+→ detect_seasonal_patterns()<br>
+→ forecast_demand()
+</div>
+</div>
+
+<div class="antigravity-gradient p-8 rounded-2xl card-hover scroll-reveal stagger-2">
+<div class="flex items-center gap-3 mb-4">
+<i class="fas fa-database text-green-400 text-2xl"></i>
+<h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Documentación Técnica</h3>
+</div>
+<p class="text-sm text-gray-300 mb-6">
+Indexación de manuales Mercury, fichas técnicas y procedimientos para consulta instantánea.
+</p>
+<div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-green-300">
+<span class="text-gray-500">Processing: Technical_Docs</span><br>
+Mercury_Manuals... [OK]<br>
+Parts_Catalogs... [OK]<br>
+Repair_Procedures... [OK]
+</div>
+</div>
+
+<div class="antigravity-gradient p-8 rounded-2xl card-hover scroll-reveal stagger-3">
+<div class="flex items-center gap-3 mb-4">
+<i class="fas fa-chart-line text-purple-400 text-2xl"></i>
+<h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Cruces de Datos</h3>
+</div>
+<p class="text-sm text-gray-300 mb-6">
+Correlación entre ventas, reparaciones, stock y datos de clientes para descubrir insights.
+</p>
+<div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-purple-300">
+<span class="text-gray-500">cross_analysis:</span><br>
+sales × repairs × inventory<br>
+→ identify_failure_patterns()<br>
+→ optimize_stock_levels()
+</div>
+</div>
+
+<div class="antigravity-gradient p-8 rounded-2xl card-hover scroll-reveal stagger-4">
+<div class="flex items-center gap-3 mb-4">
+<i class="fas fa-search text-orange-400 text-2xl"></i>
+<h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Localización Inteligente</h3>
+</div>
+<p class="text-sm text-gray-300 mb-6">
+Búsqueda optimizada de stock en múltiples almacenes con análisis de proximidad y demanda.
+</p>
+<div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-orange-400">
+find_optimal_stock_location()<br>
+analysis: warehouse_demand<br>
+result: "Almacén A - Prioridad 1"<br>
+<span class="text-green-400">✓ Optimizado</span>
+</div>
+</div>
+
+<div class="antigravity-gradient p-8 rounded-2xl card-hover scroll-reveal stagger-5">
+<div class="flex items-center gap-3 mb-4">
+<i class="fas fa-wrench text-cyan-400 text-2xl"></i>
+<h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Predicción de Reparaciones</h3>
+</div>
+<p class="text-sm text-gray-300 mb-6">
+Análisis predictivo basado en histórico de averías y datos de uso para anticipar necesidades.
+</p>
+<div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-cyan-400">
+predictive_maintenance()<br>
+input: motor_hours_2024<br>
+forecast: "sensor_replacement_Q1"<br>
+confidence: alta
+</div>
+</div>
+
+<div class="antigravity-gradient p-8 rounded-2xl card-hover scroll-reveal stagger-6">
+<div class="flex items-center gap-3 mb-4">
+<i class="fas fa-calculator text-emerald-400 text-2xl"></i>
+<h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Análisis Contable</h3>
+</div>
+<p class="text-sm text-gray-300 mb-6">
+Procesamiento de datos financieros y operativos para optimización de costes y rentabilidad.
+</p>
+<div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-emerald-400">
+analyze_financial_data()<br>
+repair_costs vs revenue<br>
+→ identify_profit_opportunities<br>
+<span class="text-green-400">Potencial de mejora significativo</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECCIÓN 1: Análisis de Datos Internos por Departamento (Sección Larga) -->
+<section id="casos" class="bg-gray-100 px-6 section scroll-reveal-parent">
+<!-- Contenedor principal que centra el contenido verticalmente -->
+<div class="max-w-7xl mx-auto w-full py-20 flex flex-col justify-center">
+<div class="text-center mb-16 scroll-reveal">
+<div class="inline-flex items-center gap-2 mb-4">
+<div class="w-12 h-0.5 bg-touron-red"></div>
+<i class="fas fa-building text-touron-blue text-2xl"></i>
+<div class="w-12 h-0.5 bg-touron-red"></div>
+</div>
+<h2 class="text-3xl md:text-4xl font-bold text-touron-blue uppercase tracking-tight">Análisis de Datos Internos</h2>
+<p class="text-gray-600 text-lg md:text-xl font-medium mt-2 italic">Explotación de información corporativa</p>
+<div class="h-1.5 w-32 bg-touron-red mx-auto mt-6 rounded-full"></div>
+</div>
+
+<!-- El grid ahora permite que el contenido fluya naturalmente -->
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- ... (Todas las 6 tarjetas de departamentos: Taller, Postventa, etc.) ... -->
+<!-- Taller -->
+<div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg scroll-reveal stagger-1">
+<div class="dept-visual bg-gradient-to-br from-blue-50 to-blue-100">
+<div class="flex flex-col gap-2 w-full px-4 relative z-10">
+<div class="bg-white p-2 rounded-lg shadow-sm border border-blue-200 text-[8px]">
+<span class="text-red-600 font-bold">ANÁLISIS: Q4 2024</span>
+<div class="text-gray-600 mt-1">→ Mayoría averías sensor presión</div>
+<div class="text-xs text-blue-600 mt-1">Recomendación: más stock</div>
+</div>
+<div class="bg-touron-blue p-2 rounded shadow text-white text-[8px]">
+<div class="font-bold mb-1">Tendencias:</div>
+<div>• Verado 200: aumento reparaciones</div>
+<div>• Falla común: J2-K3</div>
+<div>• Optimización tiempos activa</div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Taller</span>
+</div>
+<h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Análisis de Reparaciones</h3>
+<ul class="text-gray-600 space-y-2 text-xs flex-grow">
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Cruce histórico:</strong> años de reparaciones</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Patrones de avería:</strong> por modelo/horas uso</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Predicción stock:</strong> recambios necesarios</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Optimización:</strong> tiempos reparación</span>
+</li>
+</ul>
+</div>
+
+<!-- Postventa -->
+<div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg scroll-reveal stagger-2">
+<div class="dept-visual bg-gradient-to-br from-emerald-50 to-emerald-100">
+<div class="w-full px-4 relative z-10">
+<div class="bg-white p-3 rounded-lg shadow-lg border border-emerald-200 text-[8px]">
+<div class="flex justify-between mb-2">
+<span class="font-bold text-emerald-600">CLIENTES VIP</span>
+<span class="text-orange-500 font-semibold">TOP 5%</span>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between"><span>Marina del Sur:</span><span class="font-bold">Ventas destacadas</span></div>
+<div class="flex justify-between"><span>Club Náutico:</span><span class="font-bold">Ventas destacadas</span></div>
+<div class="bg-emerald-100 text-emerald-600 text-center p-1 rounded font-bold mt-2">
+Mejora en retención activa
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Postventa</span>
+</div>
+<h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Análisis de Clientes</h3>
+<ul class="text-gray-600 space-y-2 text-xs flex-grow">
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Segmentación:</strong> clientes por volumen/ranking</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Historial:</strong> servicios/reparaciones por cliente</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Tendencias:</strong> patrones de consumo</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Predicción:</strong> próximas necesidades servicio</span>
+</li>
+</ul>
+</div>
+
+<!-- Recambios -->
+<div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg scroll-reveal stagger-3">
+<div class="dept-visual bg-gradient-to-br from-orange-50 to-orange-100">
+<div class="w-full px-4 relative z-10 flex items-center justify-center h-full">
+<div class="text-center bg-white p-3 rounded-lg shadow-lg">
+<div class="text-lg font-bold text-gray-700 mb-1">ANÁLISIS STOCK</div>
+<div class="bg-orange-100 inline-block px-3 py-1 rounded-full border border-orange-300 text-[8px] font-semibold">
+Optimización Almacén
+</div>
+<div class="mt-2 text-sm text-green-600 font-bold">Reducción stock activa</div>
+<div class="text-xs text-gray-600 mt-1">Rotación mejorada activa</div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Recambios</span>
+</div>
+<h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Optimización de Inventario</h3>
+<ul class="text-gray-600 space-y-2 text-xs flex-grow">
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Análisis demanda:</strong> por histórico ventas</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Localización óptima:</strong> stock por almacén</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Predicción:</strong> necesidades trimestrales</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Cross-docking:</strong> rutas de distribución</span>
+</li>
+</ul>
+</div>
+
+<!-- Comercial -->
+<div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg scroll-reveal stagger-4">
+<div class="dept-visual bg-gradient-to-br from-blue-50 to-indigo-100">
+<div class="w-full px-4 relative z-10">
+<div class="bg-white p-3 rounded-lg shadow-xl border border-blue-200">
+<div class="text-[8px] space-y-2">
+<div class="flex justify-between font-bold"><span>CAMPAÑA 2024:</span><span class="text-blue-600">Ventas destacadas</span></div>
+<div class="flex justify-between"><span>Motorización más vendida:</span><span class="font-bold">Verado 150 XL</span></div>
+<div class="flex justify-between"><span>ROI marketing:</span><span class="text-green-600 font-bold">Resultados positivos</span></div>
+<div class="bg-blue-50 text-blue-700 text-center p-1 rounded font-bold mt-2">
+Calificación de prospectos excelente
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Comercial</span>
+</div>
+<h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Análisis de Ventas</h3>
+<ul class="text-gray-600 space-y-2 text-xs flex-grow">
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Cruce datos:</strong> ventas × campañas × clientes</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Tendencias:</strong> modelos por temporada/zona</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>ROI análisis:</strong> efectividad campañas</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Precios óptimos:</strong> por segmento cliente</span>
+</li>
+</ul>
+</div>
+
+<!-- Almacén -->
+<div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg scroll-reveal stagger-5">
+<div class="dept-visual bg-gradient-to-br from-yellow-50 to-orange-100">
+<div class="w-full px-4 relative z-10">
+<div class="bg-white p-3 rounded-lg shadow-lg border border-orange-200 text-[8px]">
+<div class="flex justify-between font-bold mb-2">
+<span>LOGÍSTICA OPTIMIZADA</span>
+<span class="text-green-600 font-bold">Costes reducidos</span>
+</div>
+<div class="space-y-1 mb-2">
+<div class="flex justify-between"><span>Rutas picking:</span><span class="text-green-600">Tiempo optimizado</span></div>
+<div class="flex justify-between"><span>Distribución:</span><span class="text-blue-600">Mismo día activado</span></div>
+</div>
+<div class="bg-orange-50 text-orange-700 text-center p-1 rounded font-bold">
+Eficiencia de entregas mejorada
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Almacén</span>
+</div>
+<h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Análisis Logístico</h3>
+<ul class="text-gray-600 space-y-2 text-xs flex-grow">
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Patrones picking:</strong> por tipo producto</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Optimización rutas:</strong> GPS × urgencias</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Demanda predecida:</strong> stock dinámico</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Cross-docking:</strong> reducción tiempos</span>
+</li>
+</ul>
+</div>
+
+<!-- Marketing -->
+<div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg scroll-reveal stagger-6">
+<div class="dept-visual bg-gradient-to-br from-purple-50 to-pink-100">
+<div class="w-full px-4 relative z-10">
+<div class="bg-white p-3 rounded-lg shadow-lg border border-purple-200 text-[8px]">
+<div class="flex justify-between font-bold mb-2">
+<span>CONTENT ANALYTICS</span>
+<span class="text-purple-600 font-bold">AI-GENERATED</span>
+</div>
+<div class="space-y-1 mb-2">
+<div class="flex justify-between"><span>Engagement:</span><span class="text-pink-600">Mejora notable</span></div>
+<div class="flex justify-between"><span>Conversión:</span><span class="text-purple-600">Resultados positivos</span></div>
+</div>
+<div class="bg-purple-50 text-purple-700 text-center p-1 rounded font-bold">
+Diseños generados continuamente
+</div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Marketing</span>
+</div>
+<h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Generación de Contenido</h3>
+<ul class="text-gray-600 space-y-2 text-xs flex-grow">
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Análisis tendencias:</strong> mercado náutico</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Diseños IA:</strong> banners/brochures/videos</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>Personalización:</strong> por segmento cliente</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fas fa-check text-green-500 mt-1"></i>
+<span><strong>A/B testing:</strong> optimización campañas</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECCIÓN 2: Análisis Cross-Departamental -->
+<section id="cross-analysis" class="px-6 section flex flex-col justify-center scroll-reveal-parent">
+<div class="max-w-7xl mx-auto w-full py-20">
+<div class="text-center mb-16 scroll-reveal">
+<div class="inline-flex items-center gap-2 mb-4">
+<div class="w-12 h-0.5 bg-touron-red"></div>
+<i class="fas fa-project-diagram text-touron-blue text-2xl"></i>
+<div class="w-12 h-0.5 bg-touron-red"></div>
+</div>
+<h2 class="text-3xl md:text-4xl font-bold text-touron-blue uppercase tracking-tight">Análisis Cross-Departamental</h2>
+<p class="text-gray-600 text-lg md:text-xl font-medium mt-2 italic">Correlación de datos para insights globales</p>
+<div class="h-1.5 w-32 bg-touron-red mx-auto mt-6 rounded-full"></div>
+</div>
+
+<div class="bg-gradient-to-r from-touron-blue to-blue-900 rounded-2xl p-8 text-white">
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Ventas × Reparaciones -->
+<div class="bg-blue-900/50 backdrop-blur-sm rounded-lg p-5 border border-blue-400/30 shadow-lg scroll-reveal stagger-1">
+<div class="flex items-center gap-3 mb-3">
+<i class="fas fa-project-diagram text-yellow-400 text-xl"></i>
+<h4 class="font-bold text-lg text-white">Ventas × Reparaciones</h4>
+</div>
+<p class="text-sm text-gray-100 leading-relaxed mb-4">
+Correlación entre modelos vendidos y tasa de averías para ajustar garantías y stock.
+</p>
+<div class="bg-blue-950/70 rounded-lg p-4 border border-blue-300/50">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs text-gray-300 font-medium">Modelos identificados:</span>
+<span class="text-yellow-400 font-bold">Varios</span>
+</div>
+<div class="w-full bg-blue-800 h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-yellow-400 to-orange-400 h-full rounded-full" style="width: 65%"></div>
+</div>
+<div class="text-xs text-gray-400 mt-1">Modelos con tasas de fallo elevadas</div>
+<div class="flex items-center gap-2 mt-3 text-xs bg-green-600/20 px-2 py-1 rounded">
+<i class="fas fa-check-circle text-green-400 mr-1"></i>
+<span class="text-green-300">Optimización de stock en curso</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Clientes × Marketing -->
+<div class="bg-blue-900/50 backdrop-blur-sm rounded-lg p-5 border border-blue-400/30 shadow-lg scroll-reveal stagger-2">
+<div class="flex items-center gap-3 mb-3">
+<i class="fas fa-users text-green-400 text-xl"></i>
+<h4 class="font-bold text-lg text-white">Clientes × Marketing</h4>
+</div>
+<p class="text-sm text-gray-100 leading-relaxed mb-4">
+Análisis de comportamiento para personalizar campañas y anticipar necesidades.
+</p>
+<div class="bg-blue-950/70 rounded-lg p-4 border border-blue-300/50">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs text-gray-300 font-medium">Mejora CTR:</span>
+<span class="text-green-400 font-bold">Notable</span>
+</div>
+<div class="w-full bg-blue-800 h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-green-400 to-emerald-400 h-full rounded-full" style="width: 70%"></div>
+</div>
+<div class="text-xs text-gray-400 mt-1">Conversión mejorada significativamente</div>
+<div class="flex items-center gap-2 mt-3 text-xs bg-purple-600/20 px-2 py-1 rounded">
+<i class="fas fa-chart-line text-purple-400 mr-1"></i>
+<span class="text-purple-300">Generación IA activa</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Stock × Logística -->
+<div class="bg-blue-900/50 backdrop-blur-sm rounded-lg p-5 border border-blue-400/30 shadow-lg scroll-reveal stagger-3">
+<div class="flex items-center gap-3 mb-3">
+<i class="fas fa-warehouse text-blue-400 text-xl"></i>
+<h4 class="font-bold text-lg text-white">Stock × Logística</h4>
+</div>
+<p class="text-sm text-gray-100 leading-relaxed mb-4">
+Optimización de inventario basada en patrones de demanda geográfica y temporal.
+</p>
+<div class="bg-blue-950/70 rounded-lg p-4 border border-blue-300/50">
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<span class="text-xs text-gray-300 font-medium">Reducción costes:</span>
+<span class="text-blue-400 font-bold">Significativa</span>
+</div>
+<div class="w-full bg-blue-800 h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-blue-400 to-cyan-400 h-full rounded-full" style="width: 60%"></div>
+</div>
+<div class="text-xs text-gray-400 mt-1">Eficiencia en entregas mejorada</div>
+<div class="flex items-center gap-2 mt-3 text-xs bg-orange-600/20 px-2 py-1 rounded">
+<i class="fas fa-route text-orange-400 mr-1"></i>
+<span class="text-orange-300">Optimización activa</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Impacto -->
+<section id="impacto" class="eco-gradient text-white px-6 section flex flex-col justify-center scroll-reveal-parent">
+<div class="max-w-6xl mx-auto relative z-10 w-full">
+<div class="text-center mb-16 scroll-reveal">
+<h2 class="text-4xl font-extrabold mb-4 uppercase tracking-tighter">Sostenibilidad y Soberanía</h2>
+<p class="text-xl opacity-90">Alineación con valores de Touron</p>
+</div>
+
+<div class="grid md:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 scroll-reveal stagger-1">
+<div class="flex items-start">
+<div class="bg-yellow-400 p-3 rounded-lg mr-4 text-2xl">
+<i class="fas fa-solar-panel text-touron-blue"></i>
+</div>
+<div>
+<h4 class="font-bold text-xl mb-2 uppercase tracking-tight">Energía Renovable</h4>
+<p class="opacity-90 leading-relaxed">
+Alimentado por <strong class="text-yellow-300">paneles solares de Touron</strong>.
+Coste operativo mínimo y sin emisiones.
+</p>
+</div>
+</div>
+</div>
+
+<div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 scroll-reveal stagger-2">
+<div class="flex items-start">
+<div class="bg-green-400 p-3 rounded-lg mr-4 text-2xl">
+<i class="fas fa-shield-alt text-white"></i>
+</div>
+<div>
+<h4 class="font-bold text-xl mb-2 uppercase tracking-tight">Privacidad LOPD</h4>
+<p class="opacity-90 leading-relaxed">
+<strong class="text-green-300">Soberanía de datos</strong>.
+La información permanece en la red local.
+</p>
+</div>
+</div>
+</div>
+
+<div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 scroll-reveal stagger-3">
+<div class="flex items-start">
+<div class="bg-blue-400 p-3 rounded-lg mr-4 text-2xl">
+<i class="fas fa-infinity text-white"></i>
+</div>
+<div>
+<h4 class="font-bold text-xl mb-2 uppercase tracking-tight">Independencia</h4>
+<p class="opacity-90 leading-relaxed">
+<strong class="text-blue-300">Sin suscripciones</strong>.
+Control total sin dependencias externas.
+</p>
+</div>
+</div>
+</div>
+
+<div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 border-purple-400/50 scroll-reveal stagger-4">
+<div class="flex items-start">
+<div class="bg-purple-400 p-3 rounded-lg mr-4 text-2xl">
+<i class="fas fa-user-graduate text-white"></i>
+</div>
+<div>
+<h4 class="font-bold text-xl mb-2 uppercase tracking-tight">Conocimiento Interno</h4>
+<p class="opacity-90 leading-relaxed">
+<strong class="text-purple-300">Capacidades propias disponibles</strong>.
+El conocimiento técnico y experiencia necesaria ya existe en la empresa
+a través de Luis Conde, eliminando costes de consultoría externa.
+</p>
+<div class="mt-3 flex items-center gap-2">
+<span class="text-xs bg-purple-600/30 px-2 py-1 rounded-full border border-purple-400/30">
+<i class="fas fa-check mr-1"></i>0€/h en consultoría
+</span>
+<span class="text-xs bg-green-600/30 px-2 py-1 rounded-full border border-green-400/30">
+<i class="fas fa-rocket mr-1"></i>Implementación inmediata
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="relative scroll-reveal stagger-5">
+<div class="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20">
+<div class="text-center mb-8">
+<span class="text-sm font-bold text-emerald-400 uppercase tracking-widest block mb-3">Soberanía Touron</span>
+<div class="text-6xl font-bold mb-2">100%</div>
+<div class="text-lg opacity-90">Infraestructura Privada</div>
+</div>
+
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<span class="font-semibold">Seguridad</span>
+<span class="text-emerald-400 font-bold">
+<i class="fas fa-check-circle mr-1"></i>
+Nivel Máximo
+</span>
+</div>
+<div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-emerald-400 to-green-400 h-full rounded-full"></div>
+</div>
+
+<div class="flex justify-between items-center text-sm">
+<span class="font-semibold">Control</span>
+<span class="text-blue-400 font-bold">
+<i class="fas fa-check-circle mr-1"></i>
+Total
+</span>
+</div>
+<div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-blue-400 to-cyan-400 h-full rounded-full"></div>
+</div>
+
+<div class="flex justify-between items-center text-sm">
+<span class="font-semibold">Conocimiento</span>
+<span class="text-purple-400 font-bold">
+<i class="fas fa-check-circle mr-1"></i>
+Interno
+</span>
+</div>
+<div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-touron-blue text-white px-6 footer-section section">
+<div class="max-w-6xl mx-auto w-full">
+<div class="grid md:grid-cols-3 gap-8">
+<div>
+<div class="touron-logo-new text-3xl mb-4">
+Touron S.A<span>.</span>
+</div>
+<p class="text-sm opacity-80">
+Propuesta interna de implementación IA con capacidades propias.
+</p>
+</div>
+<div>
+<h4 class="font-bold mb-4">Autor</h4>
+<div class="text-sm space-y-2 opacity-80">
+<p><i class="fas fa-user mr-2"></i> Luis Conde Blanco</p>
+<p><i class="fas fa-briefcase mr-2"></i> Departamento de Sistemas</p>
+<p><i class="fas fa-building mr-2"></i> Touron S.A.</p>
+<p><i class="fas fa-code mr-2"></i> Lead Developer IA</p>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-bold mb-4">Capacidades del Sistema</h4>
+<ul class="text-sm space-y-2 opacity-80">
+<li><i class="fas fa-database text-green-400 mr-2"></i>Análisis de datos históricos</li>
+<li><i class="fas fa-chart-line text-green-400 mr-2"></i>Cruces cross-departmentales</li>
+<li><i class="fas fa-search text-green-400 mr-2"></i>Localización inteligente de stock</li>
+<li><i class="fas fa-brain text-green-400 mr-2"></i>Generación de contenido IA</li>
+</ul>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-white/20 text-center text-sm opacity-60">
+<p>&copy; 2024 Touron S.A. - Propuesta desarrollada internamente por Luis Conde Blanco</p>
+</div>
+</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- CLAVE 2: Ajuste dinámico del alto de las secciones ---
+    function setSectionHeight() {
+        const sections = document.querySelectorAll('.section');
+        const height = Math.max(window.innerHeight, document.documentElement.clientHeight);
+        sections.forEach(section => {
+            // La sección de análisis de departamentos (#casos) es especial
+            // Se ajusta al tamaño de su contenido + padding
+            if (section.id === 'casos') {
+                const contentHeight = section.querySelector('.max-w-7xl').scrollHeight;
+                section.style.height = 'auto'; // Deja que el contenido defina el alto
+                section.style.minHeight = `${height}px`; // Pero asegura que ocupe al menos una pantalla al principio
+            } else if (section.classList.contains('footer-section')) {
+                section.style.minHeight = '100vh';
+                section.style.overflow = 'visible';
+            } else {
+                // Para las demás, mantiene el 100vh
+                section.style.height = `${height}px`;
+            }
+        });
+    }
+
+    setSectionHeight();
+    window.addEventListener('resize', setSectionHeight);
+
+    // --- Progress Bar ---
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrolled / height) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+    });
+
+    // --- Enhanced Scroll Reveal with Stagger Effect ---
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(el => {
+        observer.observe(el);
+    });
+
+    // --- Floating Navigation Logic ---
+    const floatingNav = document.getElementById('floatingNav');
+
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        <div class="parallax-layer" data-speed="0.5">
-            <div class="absolute inset-0 opacity-10">
-                <div class="absolute top-20 left-10 text-8xl opacity-20">⚓</div>
-                <div class="absolute bottom-20 right-10 text-6xl opacity-20">⛵</div>
-                <div class="absolute top-1/2 left-1/4 text-7xl opacity-10">⚡</div>
-            </div>
-        </div>
-
-        <div class="relative z-10 min-h-screen flex flex-col justify-center items-center px-6">
-            <div class="text-center max-w-5xl mx-auto">
-                <!-- Logo con animación -->
-                <div class="fade-in mb-8">
-                    <div class="text-6xl md:text-8xl font-black tracking-tight">
-                        Touron S.A<span class="text-blue-400">.</span>
-                    </div>
-                </div>
-                
-                <!-- Título principal con animación -->
-                <div class="fade-in mb-8" style="animation-delay: 0.2s">
-                    <h1 class="text-4xl md:text-7xl font-extrabold mb-6 tracking-tight">
-                        INTELIGENCIA<br>
-                        <span class="text-blue-300 font-light italic">ARTIFICIAL LOCAL</span>
-                    </h1>
-                </div>
-                
-                <!-- Subtítulo -->
-                <div class="fade-in mb-12 max-w-3xl mx-auto" style="animation-delay: 0.4s">
-                    <p class="text-xl md:text-2xl opacity-90 font-medium leading-relaxed">
-                        Sistema interno de IA con <span class="text-yellow-300 font-bold">datos locales</span> 
-                        y <span class="text-green-300 font-bold">control total</span>. 
-                        Infraestructura propia para procesamiento seguro.
-                    </p>
-                </div>
-                
-                <!-- Autor destacado -->
-                <div class="fade-in mb-12 scale-in" style="animation-delay: 0.6s">
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 inline-block border border-white/20">
-                        <p class="text-lg font-medium mb-2">
-                            <i class="fas fa-user-tie mr-3 text-yellow-300"></i>
-                            <span class="font-bold text-yellow-300">Luis Conde Blanco</span>
-                        </p>
-                        <p class="text-sm opacity-80">Departamento de Sistemas - Touron S.A.</p>
-                    </div>
-                </div>
-                
-                <!-- Estadísticas animadas -->
-                <div class="fade-in mb-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto" style="animation-delay: 0.8s">
-                    <div class="text-center">
-                        <div class="counter text-yellow-300" data-target="0">0</div>
-                        <div class="text-sm opacity-80">€/mes en licencias</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="counter text-green-300" data-target="100">0</div>
-                        <div class="text-sm opacity-80">% Datos locales</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="counter text-blue-300" data-target="0">0</div>
-                        <div class="text-sm opacity-80">€/h consultoría</div>
-                    </div>
-                </div>
-                
-                <!-- Botones CTA -->
-                <div class="fade-in flex flex-wrap justify-center gap-6" style="animation-delay: 1s">
-                    <a href="#arquitectura" class="bg-touron-red hover:bg-red-600 text-white px-12 py-5 rounded-full font-bold transition-all shadow-2xl uppercase text-sm tracking-wider hover-lift">
-                        <i class="fas fa-microchip mr-3"></i>
-                        Ver Arquitectura
-                    </a>
-                    <a href="#desarrollo" class="bg-blue-600 hover:bg-blue-700 text-white px-12 py-5 rounded-full font-bold transition-all shadow-2xl uppercase text-sm tracking-wider hover-lift">
-                        <i class="fas fa-rocket mr-3"></i>
-                        Desarrollo
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Indicador de scroll -->
-            <div class="scroll-indicator text-white/50">
-                <i class="fas fa-chevron-down text-2xl"></i>
-            </div>
-        </div>
-    </header>
-
-    <!-- Sección Arquitectura -->
-    <section id="arquitectura" class="scroll-section py-20 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <div class="inline-flex items-center gap-2 mb-6">
-                    <div class="w-16 h-1 bg-touron-red"></div>
-                    <i class="fas fa-server text-touron-blue text-4xl"></i>
-                    <div class="w-16 h-1 bg-touron-red"></div>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold text-touron-blue mb-4 uppercase tracking-tight">
-                    Arquitectura IA
-                </h2>
-                <p class="text-xl text-gray-600 font-medium">Infraestructura local de vanguardia</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-grid">
-                <!-- Tarjeta Docker -->
-                <div class="bg-white rounded-2xl shadow-xl card-3d hover-lift fade-in scale-in" style="--stagger: 1">
-                    <div class="p-8">
-                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 mb-6 text-white">
-                            <i class="fas fa-cube text-4xl mb-4"></i>
-                            <div class="bg-black/20 rounded-lg p-3 font-mono text-sm">
-                                <span class="text-blue-200">docker ps</span><br>
-                                <span class="text-white">→ ollama running</span><br>
-                                <span class="text-green-300">→ webui active</span>
-                            </div>
-                        </div>
-                        <h3 class="font-bold text-2xl text-touron-blue mb-3">Docker</h3>
-                        <p class="text-gray-600">Contenerización para despliegue rápido y aislamiento total de componentes.</p>
-                    </div>
-                </div>
-
-                <!-- Tarjeta Ollama -->
-                <div class="bg-white rounded-2xl shadow-xl card-3d hover-lift fade-in scale-in" style="--stagger: 2">
-                    <div class="p-8">
-                        <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 mb-6 text-white">
-                            <i class="fas fa-brain text-4xl mb-4"></i>
-                            <div class="bg-black/20 rounded-lg p-3 font-mono text-sm">
-                                <span class="text-purple-200">ollama run</span><br>
-                                <span class="text-white">→ llama3.1 loaded</span><br>
-                                <span class="text-green-300">→ processing data</span>
-                            </div>
-                        </div>
-                        <h3 class="font-bold text-2xl text-touron-blue mb-3">Ollama</h3>
-                        <p class="text-gray-600">Motor de IA para ejecución local y procesamiento interno de datos.</p>
-                    </div>
-                </div>
-
-                <!-- Tarjeta WebUI -->
-                <div class="bg-white rounded-2xl shadow-xl card-3d hover-lift fade-in scale-in" style="--stagger: 3">
-                    <div class="p-8">
-                        <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 mb-6 text-white">
-                            <i class="fas fa-window-maximize text-4xl mb-4"></i>
-                            <div class="bg-black/20 rounded-lg p-3 font-sans text-sm">
-                                <div class="bg-white/20 rounded p-2 mb-2">
-                                    "Análisis de tendencias..."
-                                </div>
-                                <div class="h-2 w-3/4 bg-white/30 rounded-full"></div>
-                            </div>
-                        </div>
-                        <h3 class="font-bold text-2xl text-touron-blue mb-3">Open WebUI</h3>
-                        <p class="text-gray-600">Portal intuitivo para análisis y acceso centralizado a información.</p>
-                    </div>
-                </div>
-
-                <!-- Tarjeta Hardware -->
-                <div class="bg-white rounded-2xl shadow-xl card-3d hover-lift fade-in scale-in" style="--stagger: 4">
-                    <div class="p-8">
-                        <div class="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 mb-6 text-white">
-                            <i class="fas fa-microchip text-4xl mb-4"></i>
-                            <div class="bg-black/20 rounded-lg p-3">
-                                <div class="text-sm font-bold mb-2">GPU: NVIDIA RTX</div>
-                                <div class="w-full bg-black/30 h-2 rounded-full overflow-hidden">
-                                    <div class="bg-gradient-to-r from-yellow-400 to-green-400 h-full rounded-full" style="width: 85%"></div>
-                                </div>
-                                <div class="text-xs mt-2 text-green-300">Procesando activamente</div>
-                            </div>
-                        </div>
-                        <h3 class="font-bold text-2xl text-touron-blue mb-3">Infraestructura</h3>
-                        <p class="text-gray-600">Servidor con GPU dedicadas para análisis masivo en tiempo real.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Desarrollo -->
-    <section id="desarrollo" class="scroll-section py-20 bg-gradient-to-br from-slate-900 to-slate-800 text-white feature-bg">
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-16 fade-in">
-                <div class="flex items-center justify-center gap-4 mb-6">
-                    <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
-                        <i class="fas fa-code text-white text-3xl"></i>
-                    </div>
-                    <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight">Plataforma Antigravity</h2>
-                </div>
-                <p class="text-xl text-blue-200 font-medium">Capacidades internas avanzadas</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Análisis de Datos -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover-lift fade-in slide-left">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-chart-bar text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">Análisis de Datos</h3>
-                    </div>
-                    <p class="text-gray-300 mb-6">Procesamiento masivo de históricos para identificar patrones y tendencias estratégicas.</p>
-                    <div class="bg-black/40 rounded-lg p-4 font-mono text-sm">
-                        <span class="text-blue-400">analyze_sales_trends(2019-2024)</span><br>
-                        <span class="text-green-400">→ patterns detected</span><br>
-                        <span class="text-yellow-400">→ forecast ready</span>
-                    </div>
-                </div>
-
-                <!-- Documentación -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover-lift fade-in slide-left" style="animation-delay: 0.1s">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-green-500 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-book text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">Documentación IA</h3>
-                    </div>
-                    <p class="text-gray-300 mb-6">Indexación inteligente de manuales técnicos y procedimientos Mercury.</p>
-                    <div class="bg-black/40 rounded-lg p-4 font-mono text-sm">
-                        <span class="text-green-400">Mercury_Manuals... [OK]</span><br>
-                        <span class="text-green-400">Parts_Catalogs... [OK]</span><br>
-                        <span class="text-green-400">Procedures... [OK]</span>
-                    </div>
-                </div>
-
-                <!-- Cruces de Datos -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover-lift fade-in slide-left" style="animation-delay: 0.2s">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-purple-500 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-project-diagram text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">Cruces Cross-Data</h3>
-                    </div>
-                    <p class="text-gray-300 mb-6">Correlación avanzada entre ventas, reparaciones y stock para insights.</p>
-                    <div class="bg-black/40 rounded-lg p-4 font-mono text-sm">
-                        <span class="text-purple-400">cross_analysis:</span><br>
-                        <span class="text-white">sales × repairs × inventory</span><br>
-                        <span class="text-yellow-400">→ optimized_results</span>
-                    </div>
-                </div>
-
-                <!-- Localización -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover-lift fade-in slide-right">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-orange-500 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-map-marked-alt text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">Localización Inteligente</h3>
-                    </div>
-                    <p class="text-gray-300 mb-6">Búsqueda optimizada con análisis de proximidad y demanda en tiempo real.</p>
-                    <div class="bg-black/40 rounded-lg p-4 font-mono text-sm">
-                        <span class="text-orange-400">find_optimal_location()</span><br>
-                        <span class="text-white">Almacén A - Prioridad 1</span><br>
-                        <span class="text-green-400">✓ Optimizado</span>
-                    </div>
-                </div>
-
-                <!-- Predicciones -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover-lift fade-in slide-right" style="animation-delay: 0.1s">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-cyan-500 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-crystal-ball text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">Predicciones IA</h3>
-                    </div>
-                    <p class="text-gray-300 mb-6">Análisis predictivo basado en histórico para anticipar necesidades.</p>
-                    <div class="bg-black/40 rounded-lg p-4 font-mono text-sm">
-                        <span class="text-cyan-400">predictive_maintenance()</span><br>
-                        <span class="text-white">forecast: sensor_Q1_2025</span><br>
-                        <span class="text-yellow-400">confidence: 92%</span>
-                    </div>
-                </div>
-
-                <!-- Contenido IA -->
-                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 hover-lift fade-in slide-right" style="animation-delay: 0.2s">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-pink-500 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-palette text-white text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">Generación Contenido</h3>
-                    </div>
-                    <p class="text-gray-300 mb-6">Creación automatizada de marketing y materiales técnicos personalizados.</p>
-                    <div class="bg-black/40 rounded-lg p-4 font-mono text-sm">
-                        <span class="text-pink-400">generate_campaign()</span><br>
-                        <span class="text-white">banners, videos, emails</span><br>
-                        <span class="text-green-400">→ AI created</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Departamentos -->
-    <section id="departamentos" class="scroll-section py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <div class="inline-flex items-center gap-2 mb-6">
-                    <div class="w-16 h-1 bg-touron-red"></div>
-                    <i class="fas fa-building text-touron-blue text-4xl"></i>
-                    <div class="w-16 h-1 bg-touron-red"></div>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold text-touron-blue uppercase tracking-tight">
-                    Análisis Departamental
-                </h2>
-                <p class="text-xl text-gray-600 font-medium mt-2">Explotación inteligente de datos por área</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Taller -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover-lift fade-in scale-in" style="--stagger: 1">
-                    <div class="h-48 bg-gradient-to-br from-blue-400 to-blue-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-white text-center">
-                                <i class="fas fa-wrench text-6xl mb-4"></i>
-                                <div class="text-2xl font-bold">Taller</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-touron-blue mb-4">Análisis de Reparaciones</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Cruce histórico de averías por modelo</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Patrones de fallo por horas de uso</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Predicción de stock de recambios</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Optimización de tiempos reparación</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Postventa -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover-lift fade-in scale-in" style="--stagger: 2">
-                    <div class="h-48 bg-gradient-to-br from-emerald-400 to-emerald-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-white text-center">
-                                <i class="fas fa-users text-6xl mb-4"></i>
-                                <div class="text-2xl font-bold">Postventa</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-touron-blue mb-4">Análisis de Clientes</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Segmentación por volumen y ranking</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Historial completo por cliente</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Detección de patrones consumo</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Predicción necesidades servicio</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Recambios -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover-lift fade-in scale-in" style="--stagger: 3">
-                    <div class="h-48 bg-gradient-to-br from-orange-400 to-orange-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-white text-center">
-                                <i class="fas fa-boxes text-6xl mb-4"></i>
-                                <div class="text-2xl font-bold">Recambios</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-touron-blue mb-4">Optimización Inventario</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Análisis demanda histórica</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Localización óptima por almacén</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Predicción trimestral necesidades</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Optimización rutas distribución</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Comercial -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover-lift fade-in scale-in" style="--stagger: 4">
-                    <div class="h-48 bg-gradient-to-br from-indigo-400 to-indigo-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-white text-center">
-                                <i class="fas fa-chart-line text-6xl mb-4"></i>
-                                <div class="text-2xl font-bold">Comercial</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-touron-blue mb-4">Análisis de Ventas</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Cruce datos ventas × campañas</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Tendencias por temporada/zona</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Análisis ROI campañas</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Precios óptimos por segmento</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Almacén -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover-lift fade-in scale-in" style="--stagger: 5">
-                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-yellow-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-white text-center">
-                                <i class="fas fa-warehouse text-6xl mb-4"></i>
-                                <div class="text-2xl font-bold">Almacén</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-touron-blue mb-4">Análisis Logístico</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Patrones picking por producto</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Optimización rutas GPS</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Stock dinámico predictivo</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Reducción tiempos cross-dock</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Marketing -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover-lift fade-in scale-in" style="--stagger: 6">
-                    <div class="h-48 bg-gradient-to-br from-purple-400 to-purple-600 relative">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-white text-center">
-                                <i class="fas fa-bullhorn text-6xl mb-4"></i>
-                                <div class="text-2xl font-bold">Marketing</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-touron-blue mb-4">Generación Contenido</h3>
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Análisis tendencias mercado</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Diseños IA banners/videos</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>Personalización por segmento</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                                <span>A/B testing automático</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Cross-Departamental Corregida -->
-    <section id="cross" class="scroll-section py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <div class="inline-flex items-center gap-3 mb-6">
-                    <div class="w-20 h-1 bg-touron-red"></div>
-                    <i class="fas fa-exchange-alt text-touron-blue text-4xl"></i>
-                    <div class="w-20 h-1 bg-touron-red"></div>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-extrabold uppercase tracking-tighter mb-4">
-                    Análisis Cross-Departamental
-                </h2>
-                <p class="text-2xl font-bold text-yellow-400 mb-2">Sinergias inteligentes entre áreas</p>
-                <div class="text-lg text-gray-300 max-w-2xl mx-auto">
-                    Correlación avanzada de datos para descubrir insights estratégicos
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Ventas × Reparaciones -->
-                <div class="bg-gradient-to-br from-red-900/50 to-red-800/30 backdrop-blur-md rounded-3xl p-8 border-2 border-red-500/30 shadow-2xl hover-lift fade-in slide-left">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-lg">
-                            <i class="fas fa-exchange-alt text-white text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Ventas × Reparaciones</h3>
-                            <p class="text-red-300 text-sm font-semibold">Análisis predictivo</p>
-                        </div>
-                    </div>
-                    
-                    <p class="text-gray-200 mb-6 text-lg leading-relaxed">
-                        Correlación avanzada entre modelos vendidos y tasas de avería para ajustar garantías y optimizar stock.
-                    </p>
-                    
-                    <div class="bg-black/40 rounded-2xl p-6 space-y-4 border border-red-500/20">
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-300 font-semibold text-lg">Modelos críticos detectados:</span>
-                            <span class="text-3xl font-bold text-yellow-400">12</span>
-                        </div>
-                        <div class="w-full bg-red-900/50 h-4 rounded-full overflow-hidden border border-red-500/30">
-                            <div class="bg-gradient-to-r from-red-400 to-orange-400 h-full rounded-full transition-all duration-1000" style="width: 65%"></div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-300">Nivel optimización:</span>
-                            <span class="text-green-400 font-bold text-lg">
-                                <i class="fas fa-check-circle mr-2"></i>Activa
-                            </span>
-                        </div>
-                        <div class="text-sm text-gray-400 italic">
-                            Stock optimizado para Q1 2025
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6 flex gap-2">
-                        <span class="bg-red-600/30 px-3 py-1 rounded-full text-xs font-semibold text-red-300 border border-red-500/30">
-                            <i class="fas fa-chart-line mr-1"></i>Modelos Verado
-                        </span>
-                        <span class="bg-orange-600/30 px-3 py-1 rounded-full text-xs font-semibold text-orange-300 border border-orange-500/30">
-                            <i class="fas fa-tools mr-1"></i>Sensor presión
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Clientes × Marketing -->
-                <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 backdrop-blur-md rounded-3xl p-8 border-2 border-green-500/30 shadow-2xl hover-lift fade-in scale-in">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg">
-                            <i class="fas fa-users-cog text-white text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Clientes × Marketing</h3>
-                            <p class="text-green-300 text-sm font-semibold">Personalización avanzada</p>
-                        </div>
-                    </div>
-                    
-                    <p class="text-gray-200 mb-6 text-lg leading-relaxed">
-                        Análisis profundo del comportamiento para campañas ultra-personalizadas y anticipación de necesidades.
-                    </p>
-                    
-                    <div class="bg-black/40 rounded-2xl p-6 space-y-4 border border-green-500/20">
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-300 font-semibold text-lg">Mejora en CTR:</span>
-                            <span class="text-3xl font-bold text-green-400">+42%</span>
-                        </div>
-                        <div class="w-full bg-green-900/50 h-4 rounded-full overflow-hidden border border-green-500/30">
-                            <div class="bg-gradient-to-r from-green-400 to-emerald-400 h-full rounded-full transition-all duration-1000" style="width: 70%"></div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-300">Tasa conversión:</span>
-                            <span class="text-yellow-400 font-bold text-lg">
-                                <i class="fas fa-arrow-up mr-2"></i>Mejorada
-                            </span>
-                        </div>
-                        <div class="text-sm text-gray-400 italic">
-                            Campañas Q4 2024 exitosas
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6 flex gap-2">
-                        <span class="bg-green-600/30 px-3 py-1 rounded-full text-xs font-semibold text-green-300 border border-green-500/30">
-                            <i class="fas fa-bullseye mr-1"></i>Targeting
-                        </span>
-                        <span class="bg-emerald-600/30 px-3 py-1 rounded-full text-xs font-semibold text-emerald-300 border border-emerald-500/30">
-                            <i class="fas fa-crown mr-1"></i>Clientes VIP
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Stock × Logística -->
-                <div class="bg-gradient-to-br from-blue-900/50 to-blue-800/30 backdrop-blur-md rounded-3xl p-8 border-2 border-blue-500/30 shadow-2xl hover-lift fade-in slide-right">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                            <i class="fas fa-route text-white text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Stock × Logística</h3>
-                            <p class="text-blue-300 text-sm font-semibold">Optimización total</p>
-                        </div>
-                    </div>
-                    
-                    <p class="text-gray-200 mb-6 text-lg leading-relaxed">
-                        Optimización inteligente de inventario basada en demanda geográfica y patrones temporales.
-                    </p>
-                    
-                    <div class="bg-black/40 rounded-2xl p-6 space-y-4 border border-blue-500/20">
-                        <div class="flex justify-between items-center">
-                            <span class="text-gray-300 font-semibold text-lg">Reducción costes:</span>
-                            <span class="text-3xl font-bold text-blue-400">28%</span>
-                        </div>
-                        <div class="w-full bg-blue-900/50 h-4 rounded-full overflow-hidden border border-blue-500/30">
-                            <div class="bg-gradient-to-r from-blue-400 to-cyan-400 h-full rounded-full transition-all duration-1000" style="width: 60%"></div>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <span class="text-gray-300">Velocidad entregas:</span>
-                            <span class="text-yellow-400 font-bold text-lg">
-                                <i class="fas fa-bolt mr-2"></i>Mismo día
-                            </span>
-                        </div>
-                        <div class="text-sm text-gray-400 italic">
-                            Rutas optimizadas activas
-                        </div>
-                    </div>
-                    
-                    <div class="mt-6 flex gap-2">
-                        <span class="bg-blue-600/30 px-3 py-1 rounded-full text-xs font-semibold text-blue-300 border border-blue-500/30">
-                            <i class="fas fa-map-marked-alt mr-1"></i>GPS Tracking
-                        </span>
-                        <span class="bg-cyan-600/30 px-3 py-1 rounded-full text-xs font-semibold text-cyan-300 border border-cyan-500/30">
-                            <i class="fas fa-truck mr-1"></i>Express
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Resumen de Beneficios -->
-            <div class="mt-16 text-center fade-in">
-                <div class="bg-gradient-to-r from-yellow-600/20 to-orange-600/20 backdrop-blur-md rounded-3xl p-8 border-2 border-yellow-500/30 max-w-4xl mx-auto">
-                    <h3 class="text-3xl font-bold mb-6 text-yellow-400">Impacto Global del Sistema IA</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-green-400 mb-2">+45%</div>
-                            <div class="text-gray-300 font-semibold">Eficiencia Operativa</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-blue-400 mb-2">-28%</div>
-                            <div class="text-gray-300 font-semibold">Costes Logísticos</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-purple-400 mb-2">+62%</div>
-                            <div class="text-gray-300 font-semibold">Conversión Marketing</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-yellow-400 mb-2">0€</div>
-                            <div class="text-gray-300 font-semibold">Coste Consultoría</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Impacto -->
-    <section id="impacto" class="scroll-section py-20 bg-gradient-to-br from-green-900 to-emerald-900 text-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-4 uppercase tracking-tighter">
-                    Sostenibilidad y Soberanía
-                </h2>
-                <p class="text-xl opacity-90">Alineación perfecta con valores Touron</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-8 fade-in slide-left">
-                    <!-- Energía Renovable -->
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover-lift">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-yellow-400 p-4 rounded-xl">
-                                <i class="fas fa-solar-panel text-touron-blue text-2xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Energía Renovable 100%</h4>
-                                <p class="opacity-90">Alimentado por paneles solares propios. Coste operativo mínimo y cero emisiones.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Privacidad -->
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover-lift">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-green-400 p-4 rounded-xl">
-                                <i class="fas fa-shield-alt text-white text-2xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Privacidad LOPD Total</h4>
-                                <p class="opacity-90">Soberanía absoluta de datos. La información nunca sale de la red local.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Independencia -->
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover-lift">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-blue-400 p-4 rounded-xl">
-                                <i class="fas fa-infinity text-white text-2xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Independencia Total</h4>
-                                <p class="opacity-90">Sin suscripciones ni dependencias. Control absoluto del sistema.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Conocimiento Interno -->
-                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 border-purple-400/50 hover-lift">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-purple-400 p-4 rounded-xl">
-                                <i class="fas fa-user-graduate text-white text-2xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Conocimiento Interno</h4>
-                                <p class="opacity-90">Capacidades propias mediante Luis Conde. Cero costes consultoría externa.</p>
-                                <div class="mt-4 flex gap-2">
-                                    <span class="bg-purple-600/30 px-3 py-1 rounded-full text-xs border border-purple-400/30">
-                                        <i class="fas fa-check mr-1"></i>0€/h consultoría
-                                    </span>
-                                    <span class="bg-green-600/30 px-3 py-1 rounded-full text-xs border border-green-400/30">
-                                        <i class="fas fa-rocket mr-1"></i>Implementación inmediata
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="fade-in slide-right">
-                    <div class="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
-                        <div class="text-center mb-8">
-                            <span class="text-sm font-bold text-emerald-400 uppercase tracking-widest block mb-3">Soberanía Touron</span>
-                            <div class="text-7xl font-bold mb-2">100%</div>
-                            <div class="text-xl opacity-90">Infraestructura Privada</div>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-semibold">Seguridad</span>
-                                    <span class="text-emerald-400 font-bold">
-                                        <i class="fas fa-check-circle mr-1"></i>
-                                        Nivel Máximo
-                                    </span>
-                                </div>
-                                <div class="w-full bg-white/10 h-3 rounded-full overflow-hidden">
-                                    <div class="bg-gradient-to-r from-emerald-400 to-green-400 h-full rounded-full"></div>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-semibold">Control</span>
-                                    <span class="text-blue-400 font-bold">
-                                        <i class="fas fa-check-circle mr-1"></i>
-                                        Total
-                                    </span>
-                                </div>
-                                <div class="w-full bg-white/10 h-3 rounded-full overflow-hidden">
-                                    <div class="bg-gradient-to-r from-blue-400 to-cyan-400 h-full rounded-full"></div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <span class="font-semibold">Conocimiento</span>
-                                    <span class="text-purple-400 font-bold">
-                                        <i class="fas fa-check-circle mr-1"></i>
-                                        Interno
-                                    </span>
-                                </div>
-                                <div class="w-full bg-white/10 h-3 rounded-full overflow-hidden">
-                                    <div class="bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-touron-blue text-white py-12 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <div class="text-4xl font-black mb-4">
-                        <span class="text-blue-400">Touron</span> IA
-                    </div>
-                    <p class="text-sm opacity-80">
-                        Propuesta interna de implementación IA con capacidades propias.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-lg">Autor</h4>
-                    <div class="text-sm space-y-2 opacity-80">
-                        <p><i class="fas fa-user mr-2"></i> Luis Conde Blanco</p>
-                        <p><i class="fas fa-briefcase mr-2"></i> Departamento de Sistemas</p>
-                        <p><i class="fas fa-building mr-2"></i> Touron S.A.</p>
-                        <p><i class="fas fa-code mr-2"></i> Lead Developer IA</p>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-lg font-bold mb-4">Capacidades del Sistema</h4>
-                    <ul class="text-sm space-y-2 opacity-80">
-                        <li><i class="fas fa-database text-green-400 mr-2"></i>Análisis histórico</li>
-                        <li><i class="fas fa-chart-line text-green-400 mr-2"></i>Cruces cross-data</li>
-                        <li><i class="fas fa-search text-green-400 mr-2"></i>Localización inteligente</li>
-                        <li><i class="fas fa-brain text-green-400 mr-2"></i>Generación contenido IA</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-8 pt-8 border-t border-white/20 text-center text-sm opacity-60">
-                <p>&copy; 2024 Touron S.A. - Propuesta por Luis Conde Blanco</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Loader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 1000);
-        });
-
-        // Particles Canvas
-        const canvas = document.getElementById('particlesCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        if (scrollTop > window.innerHeight * 0.8) {
+            floatingNav.classList.add('visible');
+        } else {
+            floatingNav.classList.remove('visible');
         }
+    });
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.5 + 0.2;
-            }
-
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-
-            draw() {
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            // Draw connections
-            particles.forEach((p1, index) => {
-                particles.slice(index + 1).forEach(p2 => {
-                    const distance = Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
-                    if (distance < 100) {
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance / 100)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
+    // --- Smooth Scrolling for Navigation Links ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
-            });
-
-            requestAnimationFrame(animateParticles);
-        }
-
-        resizeCanvas();
-        initParticles();
-        animateParticles();
-        window.addEventListener('resize', resizeCanvas);
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000;
-                const step = target / (duration / 16);
-                let current = 0;
-
-                const updateCounter = () => {
-                    current += step;
-                    if (current < target) {
-                        counter.textContent = Math.floor(current);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target;
-                    }
-                };
-
-                updateCounter();
-            });
-        }
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    // Trigger counter animation when stats section is visible
-                    if (entry.target.querySelector('.counter')) {
-                        animateCounters();
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements
-        document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Parallax effect
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.parallax-layer');
-            
-            parallaxElements.forEach(element => {
-                const speed = element.getAttribute('data-speed') || 0.5;
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-
-            // Progress bar
-            const height = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (scrolled / height) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-
-            // Navbar sticky effect
-            const navbar = document.querySelector('.navbar-sticky');
-            if (scrolled > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
             }
         });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Floating navigation for mobile
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const floatingNav = document.getElementById('floatingNav');
-            
-            if (scrollTop > 500) {
-                if (floatingNav) floatingNav.style.display = 'block';
-            } else {
-                if (floatingNav) floatingNav.style.display = 'none';
-            }
-            
-            lastScrollTop = scrollTop;
-        });
-    </script>
+    });
+});
+</script>
 </body>
 </html>
