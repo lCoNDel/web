@@ -376,104 +376,271 @@
                     </div>
                     <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-tight">Plataforma de Desarrollo (Antigravity)</h2>
                 </div>
-                <p class="text-blue-200 text-lg md:text-xl font-medium max-w-3xl uppercase tracking-wider">Capacidades Internas</p>
+                <p class="text-blue-200 text-lg md:text-xl font-medium max-w-3xl uppercase tracking-wider">Creación de Skills y Funciones IA</p>
                 <div class="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 mt-6 rounded-full"></div>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Skill de Análisis de Reparaciones -->
                 <div class="antigravity-gradient p-8 rounded-2xl card-hover">
                     <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-cogs text-blue-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Análisis de Datos</h3>
+                        <i class="fas fa-wrench text-blue-400 text-2xl"></i>
+                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Skill: TallerIA</h3>
                     </div>
                     <p class="text-sm text-gray-300 mb-6">
-                        Procesamiento masivo de históricos de ventas, reparaciones y stock para identificar patrones y tendencias.
+                        Análisis predictivo de averías y optimización de stock de recambios basado en históricos.
                     </p>
-                    <div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-blue-300">
-                        <span class="text-gray-500">// Análisis de tendencias</span><br>
-                        analyze_sales_trends(2019-2024)<br>
-                        → detect_seasonal_patterns()<br>
-                        → forecast_demand()
+                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
+                        <div class="text-purple-400 mb-2">// Skill creada en Antigravity</div>
+                        <span class="text-gray-500">skill:</span> analyze_repair_patterns<br>
+                        <span class="text-gray-500">input:</span> {modelo, horas_uso, historial}<br>
+                        <span class="text-gray-500">output:</span> <br>
+                        <span class="text-green-400">→ predict_failure_types()</span><br>
+                        <span class="text-green-400">→ recommend_stock_levels()</span><br>
+                        <span class="text-green-400">→ generate_work_order()</span>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="text-xs bg-blue-600/30 px-2 py-1 rounded-full border border-blue-400/30">
+                            <i class="fas fa-plug mr-1"></i>Integrado en Ollama
+                        </span>
+                        <span class="text-xs bg-green-600/30 px-2 py-1 rounded-full border border-green-400/30">
+                            <i class="fas fa-check mr-1"></i>Activo en WebUI
+                        </span>
                     </div>
                 </div>
 
+                <!-- Función de Gestión de Stock -->
                 <div class="antigravity-gradient p-8 rounded-2xl card-hover">
                     <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-database text-green-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Documentación Técnica</h3>
+                        <i class="fas fa-warehouse text-green-400 text-2xl"></i>
+                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Función: StockOptimizer</h3>
                     </div>
                     <p class="text-sm text-gray-300 mb-6">
-                        Indexación de manuales Mercury, fichas técnicas y procedimientos para consulta instantánea.
+                        Optimización automática de inventario multi-almacén con análisis de demanda en tiempo real.
                     </p>
-                    <div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-green-300">
-                        <span class="text-gray-500">Processing: Technical_Docs</span><br>
-                        Mercury_Manuals... [OK]<br>
-                        Parts_Catalogs... [OK]<br>
-                        Repair_Procedures... [OK]
+                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
+                        <div class="text-purple-400 mb-2">// Function Antigravity</div>
+                        <span class="text-gray-500">function:</span> optimize_inventory<br>
+                        <span class="text-gray-500">triggers:</span> [sales_data, repair_requests]<br>
+                        <span class="text-gray-500">actions:</span> <br>
+                        <span class="text-cyan-400">• analyze_demand_patterns()</span><br>
+                        <span class="text-cyan-400">• calculate_optimal_stock()</span><br>
+                        <span class="text-cyan-400">• auto_generate_orders()</span>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="text-xs bg-orange-600/30 px-2 py-1 rounded-full border border-orange-400/30">
+                            <i class="fas fa-clock mr-1"></i>Ejecución automática
+                        </span>
+                        <span class="text-xs bg-purple-600/30 px-2 py-1 rounded-full border border-purple-400/30">
+                            <i class="fas fa-chart-line mr-1"></i>Dashboard en WebUI
+                        </span>
                     </div>
                 </div>
 
+                <!-- API Connector para Mercury -->
+                <div class="antigravity-gradient p-8 rounded-2xl card-hover">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-link text-orange-400 text-2xl"></i>
+                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Connector: MercuryAPI</h3>
+                    </div>
+                    <p class="text-sm text-gray-300 mb-6">
+                        Conector directo con sistemas Mercury para actualización en tiempo real de datos técnicos.
+                    </p>
+                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
+                        <div class="text-purple-400 mb-2">// API Connector</div>
+                        <span class="text-gray-500">connector:</span> mercury_system<br>
+                        <span class="text-gray-500">endpoints:</span> <br>
+                        <span class="text-yellow-400">• GET /parts/catalog</span><br>
+                        <span class="text-yellow-400">• POST /repair/manuals</span><br>
+                        <span class="text-yellow-400">• REALTIME /inventory/status</span><br>
+                        <span class="text-gray-500">auth:</span> API_KEY_SECURE
+                    </div>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="text-xs bg-red-600/30 px-2 py-1 rounded-full border border-red-400/30">
+                            <i class="fas fa-sync mr-1"></i>Sync continuo
+                        </span>
+                        <span class="text-xs bg-blue-600/30 px-2 py-1 rounded-full border border-blue-400/30">
+                            <i class="fas fa-database mr-1"></i>Base datos local
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Workflow de Análisis de Ventas -->
                 <div class="antigravity-gradient p-8 rounded-2xl card-hover">
                     <div class="flex items-center gap-3 mb-4">
                         <i class="fas fa-chart-line text-purple-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Cruces de Datos</h3>
+                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Workflow: SalesAnalytics</h3>
                     </div>
                     <p class="text-sm text-gray-300 mb-6">
-                        Correlación entre ventas, reparaciones, stock y datos de clientes para descubrir insights.
+                        Análisis automático de ventas y generación de reportes con insights predictivos.
                     </p>
-                    <div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-purple-300">
-                        <span class="text-gray-500">cross_analysis:</span><br>
-                        sales × repairs × inventory<br>
-                        → identify_failure_patterns()<br>
-                        → optimize_stock_levels()
+                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
+                        <div class="text-purple-400 mb-2">// Workflow Automation</div>
+                        <span class="text-gray-500">trigger:</span> daily_sales_report<br>
+                        <span class="text-gray-500">steps:</span> <br>
+                        <span class="text-emerald-400">1. aggregate_sales_data()</span><br>
+                        <span class="text-emerald-400">2. identify_trends()</span><br>
+                        <span class="text-emerald-400">3. generate_insights()</span><br>
+                        <span class="text-emerald-400">4. send_to_webui()</span>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="text-xs bg-green-600/30 px-2 py-1 rounded-full border border-green-400/30">
+                            <i class="fas fa-calendar mr-1"></i>Programado diario
+                        </span>
+                        <span class="text-xs bg-cyan-600/30 px-2 py-1 rounded-full border border-cyan-400/30">
+                            <i class="fas fa-file-alt mr-1"></i>Reportes PDF
+                        </span>
                     </div>
                 </div>
 
+                <!-- Skill de Atención Cliente -->
                 <div class="antigravity-gradient p-8 rounded-2xl card-hover">
                     <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-search text-orange-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Localización Inteligente</h3>
+                        <i class="fas fa-users text-cyan-400 text-2xl"></i>
+                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Skill: CustomerBot</h3>
                     </div>
                     <p class="text-sm text-gray-300 mb-6">
-                        Búsqueda optimizada de stock en múltiples almacenes con análisis de proximidad y demanda.
+                        Asistente IA personalizado para consultas de clientes con conocimiento total de Touron.
                     </p>
-                    <div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-orange-400">
-                        find_optimal_stock_location()<br>
-                        analysis: warehouse_demand<br>
-                        result: "Almacén A - Prioridad 1"<br>
-                        <span class="text-green-400">✓ Optimizado</span>
+                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
+                        <div class="text-purple-400 mb-2">// Conversational Skill</div>
+                        <span class="text-gray-500">knowledge_base:</span> touron_complete<br>
+                        <span class="text-gray-500">capabilities:</span> <br>
+                        <span class="text-pink-400">• natural_language_query()</span><br>
+                        <span class="text-pink-400">• product_recommendations()</span><br>
+                        <span class="text-pink-400">• support_ticket_creation()</span><br>
+                        <span class="text-pink-400">• appointment_scheduling()</span>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="text-xs bg-purple-600/30 px-2 py-1 rounded-full border border-purple-400/30">
+                            <i class="fas fa-comments mr-1"></i>Chat en WebUI
+                        </span>
+                        <span class="text-xs bg-yellow-600/30 px-2 py-1 rounded-full border border-yellow-400/30">
+                            <i class="fas fa-robot mr-1"></i>24/7 disponible
+                        </span>
                     </div>
                 </div>
 
+                <!-- Data Processor Históricos -->
                 <div class="antigravity-gradient p-8 rounded-2xl card-hover">
                     <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-wrench text-cyan-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Predicción de Reparaciones</h3>
+                        <i class="fas fa-database text-emerald-400 text-2xl"></i>
+                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Processor: HistoricalData</h3>
                     </div>
                     <p class="text-sm text-gray-300 mb-6">
-                        Análisis predictivo basado en histórico de averías y datos de uso para anticipar necesidades.
+                        Procesamiento masivo de datos históricos para entrenamiento del modelo IA local.
                     </p>
-                    <div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-cyan-400">
-                        predictive_maintenance()<br>
-                        input: motor_hours_2024<br>
-                        forecast: "sensor_replacement_Q1"<br>
-                        confidence: alta
+                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
+                        <div class="text-purple-400 mb-2">// Data Pipeline</div>
+                        <span class="text-gray-500">source:</span> [sales_db, repairs_db, inventory_db]<br>
+                        <span class="text-gray-500">processing:</span> <br>
+                        <span class="text-blue-400">• extract_historical_patterns()</span><br>
+                        <span class="text-blue-400">• normalize_data()</span><br>
+                        <span class="text-blue-400">• train_local_model()</span><br>
+                        <span class="text-blue-400">• update_knowledge_base()</span>
+                    </div>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="text-xs bg-blue-600/30 px-2 py-1 rounded-full border border-blue-400/30">
+                            <i class="fas fa-brain mr-1"></i>Entrenamiento IA
+                        </span>
+                        <span class="text-xs bg-red-600/30 px-2 py-1 rounded-full border border-red-400/30">
+                            <i class="fas fa-shield-alt mr-1"></i>Datos locales
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Integración -->
+            <div class="mt-12 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-2xl p-8 border border-purple-500/30">
+                <h3 class="text-2xl font-bold text-center mb-8 text-purple-300">Integración Antigravity → Ollama → Open WebUI</h3>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-black/40 rounded-lg p-6 border border-purple-500/30">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-code text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-purple-300">Antigravity</h4>
+                        </div>
+                        <ul class="text-sm text-gray-300 space-y-2">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-arrow-right text-purple-400 mt-1 text-xs"></i>
+                                <span>Crear skills sin código</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-arrow-right text-purple-400 mt-1 text-xs"></i>
+                                <span>Conectar APIs externas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-arrow-right text-purple-400 mt-1 text-xs"></i>
+                                <span>Automatizar workflows</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-black/40 rounded-lg p-6 border border-blue-500/30">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-robot text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-blue-300">Ollama</h4>
+                        </div>
+                        <ul class="text-sm text-gray-300 space-y-2">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-sync text-blue-400 mt-1 text-xs"></i>
+                                <span>Importar skills como funciones</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-sync text-blue-400 mt-1 text-xs"></i>
+                                <span>Entrenar con datos Touron</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-sync text-blue-400 mt-1 text-xs"></i>
+                                <span>Ejecutar inferencias locales</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-black/40 rounded-lg p-6 border border-green-500/30">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-window-maximize text-white"></i>
+                            </div>
+                            <h4 class="font-bold text-green-300">Open WebUI</h4>
+                        </div>
+                        <ul class="text-sm text-gray-300 space-y-2">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-400 mt-1 text-xs"></i>
+                                <span>Interfaz intuitiva</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-400 mt-1 text-xs"></i>
+                                <span>Acceso a todas las skills</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-green-400 mt-1 text-xs"></i>
+                                <span>Dashboard de resultados</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="antigravity-gradient p-8 rounded-2xl card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-calculator text-emerald-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Análisis Contable</h3>
-                    </div>
-                    <p class="text-sm text-gray-300 mb-6">
-                        Procesamiento de datos financieros y operativos para optimización de costes y rentabilidad.
-                    </p>
-                    <div class="bg-black/60 rounded-lg p-3 font-mono text-[9px] text-emerald-400">
-                        analyze_financial_data()<br>
-                        repair_costs vs revenue<br>
-                        → identify_profit_opportunities<br>
-                        <span class="text-green-400">Potencial de mejora significativo</span>
+                <div class="mt-8 text-center">
+                    <div class="inline-flex items-center gap-4 bg-black/60 rounded-full px-6 py-3 border border-purple-500/50">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
+                            <span class="text-sm text-purple-300">Integración en tiempo real</span>
+                        </div>
+                        <div class="text-gray-400">|</div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            <span class="text-sm text-green-300">Skills activas: 6</span>
+                        </div>
+                        <div class="text-gray-400">|</div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                            <span class="text-sm text-blue-300">Modelo: Touron-IA-v1</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -995,7 +1162,7 @@
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-white/20 text-center text-sm opacity-60">
-                <p>&copy; 2026 Touron S.A. - Propuesta desarrollada internamente por Luis Conde Blanco</p>
+                <p>&copy; 2024 Touron S.A. - Propuesta desarrollada internamente por Luis Conde Blanco</p>
             </div>
         </div>
     </footer>
@@ -1029,4 +1196,3 @@
     </script>
 </body>
 </html>
-
