@@ -219,7 +219,7 @@
                 PLATAFORMA LLM <span class="text-blue-300 font-light italic">LOCAL</span>
             </h1>
             <p class="text-xl md:text-2xl opacity-90 mb-12 max-w-3xl mx-auto font-medium leading-relaxed">
-                Sistema Local de LLM's, RAG & Gestión Integral.  
+                Sistema Híbrido de LLM's & RAG.  
             </p>
 
             <!-- NUEVO: Resumen de Infraestructura -->
@@ -272,6 +272,26 @@
         </div>
         
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Hardware -->
+            <div class="benefit-card bg-white rounded-xl shadow-lg card-hover">
+                <div class="p-6">
+                    <div class="mockup-content bg-blue-950 flex flex-col items-center justify-center text-[10px] min-h-[120px]">
+                        <span class="text-blue-200 uppercase font-bold mb-2">GPU ACCELERATION: ACTIVE</span>
+                        <div class="w-full bg-blue-900 h-2 mt-2 rounded-full overflow-hidden">
+                            <div class="bg-gradient-to-r from-blue-400 to-green-400 w-3/4 h-full rounded-full"></div>
+                        </div>
+                        <div class="text-green-400 mt-2 text-xs">Procesando datos históricos</div>
+                    </div>
+                    <div class="mt-6">
+                        <h3 class="font-bold text-xl text-touron-blue mb-0 uppercase tracking-tight">HARDWARE</h3>
+                        <p class="text-touron-red text-[10px] font-bold uppercase mb-2 tracking-widest">Cómputo e Infraestructura</p>
+                        <p class="text-gray-600 text-xs text-justify leading-relaxed">
+                            La plataforma es <span class="font-semibold text-green-600">portable</span>: puede correr en un servidor propio con GPU NVIDIA dedicada, en una instancia cloud de AWS con GPU L40S o en Azure dentro del tenant de Touron. El núcleo de software es idéntico en cualquier opción.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Docker -->
             <div class="benefit-card bg-white rounded-xl shadow-lg card-hover">
                 <div class="p-6">
@@ -311,11 +331,10 @@
                         <span class="text-white">>>> Análisis de reparaciones Q4...</span>
                     </div>
                     <div class="mt-6">
-                        <h3 class="font-bold text-xl text-touron-blue mb-0 uppercase tracking-tight">Ollama</h3>
+                        <h3 class="font-bold text-xl text-touron-blue mb-0 uppercase tracking-tight">Ollama / vLLM</h3>
                         <p class="text-touron-red text-[10px] font-bold uppercase mb-2 tracking-widest">Motor IA</p>
                         <p class="text-gray-600 text-xs text-justify leading-relaxed">
-                            El cerebro de la infraestructura, permite la ejecución de Modelos LLM. 
-                            <span class="font-semibold text-blue-600">Potenciado por NVIDIA CUDA.</span> 
+                            El motor que ejecuta los modelos LLM, <span class="font-semibold text-blue-600">potenciado por NVIDIA CUDA.</span> En entornos Windows se usa <span class="font-semibold">Ollama</span>; en Linux (cloud AWS o servidor dedicado) puede sustituirse por <span class="font-semibold">vLLM</span>, más eficiente para cargas de producción intensivas.
                         </p>
                     </div>
                 </div>
@@ -345,95 +364,121 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Hardware -->
-            <div class="benefit-card bg-white rounded-xl shadow-lg card-hover">
-                <div class="p-6">
-                    <div class="mockup-content bg-blue-950 flex flex-col items-center justify-center text-[10px] min-h-[120px]">
-                        <span class="text-blue-200 uppercase font-bold mb-2">GPU ACCELERATION: ACTIVE</span>
-                        <div class="w-full bg-blue-900 h-2 mt-2 rounded-full overflow-hidden">
-                            <div class="bg-gradient-to-r from-blue-400 to-green-400 w-3/4 h-full rounded-full"></div>
-                        </div>
-                        <div class="text-green-400 mt-2 text-xs">Procesando datos históricos</div>
-                    </div>
-                    <div class="mt-6">
-                        <h3 class="font-bold text-xl text-touron-blue mb-0 uppercase tracking-tight">HARDWARE</h3>
-                        <p class="text-touron-red text-[10px] font-bold uppercase mb-2 tracking-widest">Servidor Local</p>
-                        <p class="text-gray-600 text-xs text-justify leading-relaxed">
-                            Servidor local con GPU'S de NVIDIA dedicadas y Procesador AMD. 
-                            <span class="font-semibold text-green-600">Todo ejecutado en entorno Windows</span> 
-                            y Docker (Linux).
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Modelo de Gobierno y Seguridad -->
-    <section id="gobierno" class="py-20 px-6 max-w-7xl mx-auto bg-white scroll-reveal">
-        <div class="text-center mb-16">
-            <div class="inline-flex items-center gap-2 mb-4">
-                <div class="w-12 h-0.5 bg-touron-red"></div>
-                <i class="fas fa-shield-alt text-touron-blue text-2xl"></i>
-                <div class="w-12 h-0.5 bg-touron-red"></div>
-            </div>
-            <h2 class="text-3xl md:text-4xl font-bold text-touron-blue mb-2 uppercase tracking-tight">Modelo de Gobierno y Seguridad</h2>
-            <p class="text-gray-600 text-lg md:text-xl font-medium italic">Control humano sobre las decisiones de la IA</p>
-            <div class="h-1.5 w-24 bg-touron-red mx-auto mt-6 rounded-full"></div>
-        </div>
-        
-        <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-2xl shadow-lg">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="bg-touron-blue text-white p-3 rounded-xl">
-                        <i class="fas fa-user-shield text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-xl text-touron-blue">Filtro Humano</h3>
-                        <p class="text-sm text-gray-600">Supervisión</p>
-                    </div>
+    <!-- Capacidades de la Plataforma -->
+    <section id="casos" class="py-20 bg-gray-100 px-6 border-y border-gray-200 scroll-reveal">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <div class="w-12 h-0.5 bg-touron-red"></div>
+                    <i class="fas fa-star text-touron-blue text-2xl"></i>
+                    <div class="w-12 h-0.5 bg-touron-red"></div>
                 </div>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <span><strong>Las respuestas de la IA</strong> pasan por personal cualificado antes de llegar al cliente</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <span><strong>Revisión comercial</strong> de recomendaciones importantes antes de implementar</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <span><strong>Personal designado</strong> como supervisores para garantizar la calidad del servicio</span>
-                    </li>
-                </ul>
+                <h2 class="text-3xl md:text-4xl font-bold text-touron-blue uppercase tracking-tight">Capacidades de la Plataforma</h2>
+                <p class="text-gray-600 text-lg md:text-xl font-medium mt-2 italic">Lo que Shimmer puede hacer por Touron S.A.</p>
+                <div class="h-1.5 w-32 bg-touron-red mx-auto mt-6 rounded-full"></div>
             </div>
-            
-            <div class="bg-gradient-to-br from-green-50 to-emerald-100 p-6 rounded-2xl shadow-lg">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="bg-green-600 text-white p-3 rounded-xl">
-                        <i class="fas fa-database text-2xl"></i>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- 1: Conocimiento Inmediato -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-gray-200 card-hover shadow-lg flex flex-col">
+                    <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-book-open text-blue-600 text-2xl"></i>
                     </div>
-                    <div>
-                        <h3 class="font-bold text-xl text-green-700">Calidad del Dato</h3>
-                        <p class="text-sm text-gray-600">Gestión y validación</p>
-                    </div>
+                    <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Conocimiento Inmediato</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5">
+                        La plataforma convierte años de conocimiento interno (manuales Mercury, boletines de fábrica, procedimientos de taller, etc) en un activo digital consultable. El empleado pregunta en lenguaje natural; el sistema localiza la respuesta exacta con referencia al documento fuente.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 text-sm mt-auto">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i><span>Manuales técnicos, boletines y fichas de producto</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i><span>Respuestas precisas con cita al documento original</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i><span>Escalable: añadir nueva documentación es inmediato y se pueden usar fuentes externas, Sharepoint, Outlook, etc.</span></li>
+                    </ul>
                 </div>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <span><strong>Departamento de Sistemas</strong> facilita y gestiona la calidad de los datos</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <span><strong>Validación cruzada</strong> con sistemas existentes (Manuales Mercury, ERP, etc)</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                        <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                        <span><strong>Supervisión continua</strong> para evitar errores en el entrenamiento</span>
-                    </li>
-                </ul>
+
+                <!-- 2: Agentes a Medida -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-gray-200 card-hover shadow-lg flex flex-col">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-user-cog text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Agentes a Medida</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5">
+                        Cada departamento o incluso cada persona puede tener su propio agente IA personalizado. Un Agente Contable puede tener acceso a datos sensibles como ventas, compras etc, tener sus propias herramientas como calculadora científica, acceso al ERP etc, mientras que uno de Marketing solo tendría acceso a documentación de su área y herramientas como generación de imagenes desde la plataforma.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 text-sm mt-auto">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-indigo-500 mt-1"></i><span>Identidad, instrucciones y conocimiento propios por agente</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-indigo-500 mt-1"></i><span>Múltiples agentes activos simultáneamente</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-indigo-500 mt-1"></i><span>Se crean, ajustan y retiran sin interrumpir el servicio</span></li>
+                    </ul>
+                </div>
+
+                <!-- 3: Control Total de Accesos -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-gray-200 card-hover shadow-lg flex flex-col">
+                    <div class="w-14 h-14 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Control Total de Accesos</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5">
+                        El administrador decide con precisión qué puede hacer cada usuario: a qué agentes puede hablar, qué herramientas puede usar y qué bases de conocimiento puede consultar. Lo que no está autorizado sencillamente no existe para ese usuario.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 text-sm mt-auto">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-green-500 mt-1"></i><span>Gestión de permisos por usuario o grupo</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-green-500 mt-1"></i><span>Acceso granular: herramienta A sí, herramienta B no</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-green-500 mt-1"></i><span>Trazabilidad: registro de uso, consumo de tokens, costes, etc.</span></li>
+                    </ul>
+                </div>
+
+                <!-- 4: Acceso Móvil Telegram -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-gray-200 card-hover shadow-lg flex flex-col">
+                    <div class="w-14 h-14 bg-cyan-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Acceso Móvil - Telegram</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5">
+                        Los empleados en campo pueden consultar el mismo asistente directamente desde su móvil por Telegram, sin abrir el navegador. Análisis de imágenes, documentos y respuestas en tiempo real, estén donde estén.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 text-sm mt-auto">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-cyan-500 mt-1"></i><span>Sin instalar nada: solo Telegram</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-cyan-500 mt-1"></i><span>El mismo agente, con la misma base de conocimiento</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-cyan-500 mt-1"></i><span>Acceso restringido: solo usuarios autorizados</span></li>
+                    </ul>
+                </div>
+
+                <!-- 5: Genera Documentos al Instante -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-gray-200 card-hover shadow-lg flex flex-col">
+                    <div class="w-14 h-14 bg-orange-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-file-alt text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Generación de Documentos</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5">
+                        El agente redacta un informe, una oferta o una ficha técnica y lo entrega como archivo listo para descargar, Word, Excel, CSV, etc, directamente desde el chat. También permita previsualizar contenido html, para presentaciones, esquemas, etc.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 text-sm mt-auto">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-orange-500 mt-1"></i><span>Word, Excel, CSV, JSON, Markdown</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-orange-500 mt-1"></i><span>El agente redacta; la plataforma formatea y empaqueta</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-orange-500 mt-1"></i><span>Descarga directa desde el propio chat</span></li>
+                    </ul>
+                </div>
+
+                <!-- 6: Conectado a lo que necesites -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-gray-200 card-hover shadow-lg flex flex-col">
+                    <div class="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-plug text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Escalabilidad Total</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5">
+                        La plataforma puede conectarse a SharePoint, al ERP Libra, a agencias de transporte o a modelos externos como ChatGPT o Claude cuando la tarea lo requiera. Diseñada para crecer cuando queramos.
+                    </p>
+                    <ul class="text-gray-600 space-y-2 text-sm mt-auto">
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-purple-500 mt-1"></i><span>SharePoint Online, Dynamics, ERP Libra</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-purple-500 mt-1"></i><span>APIs externas: agencias de envío, proveedores, webs</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check text-purple-500 mt-1"></i><span>Modelos premium externos (ChatGPT, Claude) bajo demanda</span></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </section>
@@ -448,104 +493,244 @@
                     <div class="w-12 h-0.5 bg-touron-red"></div>
                 </div>
                 <h2 class="text-3xl md:text-4xl font-bold text-touron-blue uppercase tracking-tight">Análisis Económico y Recursos</h2>
-                <p class="text-gray-600 text-lg md:text-xl font-medium italic">Viabilidad del proyecto</p>
+                <p class="text-gray-600 text-lg md:text-xl font-medium italic">Comparativa de opciones de despliegue</p>
                 <div class="h-1.5 w-32 bg-touron-red mx-auto mt-6 rounded-full"></div>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Costes de Infraestructura -->
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-blue-500 text-white p-3 rounded-lg">
-                            <i class="fas fa-server text-xl"></i>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+
+                <!-- Opción 1: Hardware Local + Modelos Locales -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-blue-600 card-hover">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-server text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-touron-blue">Hardware Local</h3>
+                                <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">Modelos locales + API</span>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-bold text-lg">Costes de Infraestructura</h3>
-                            <p class="text-sm text-gray-600">Inversión inicial</p>
+                        <div class="text-right">
+                            <div class="text-2xl font-extrabold text-touron-blue">8.500€</div>
+                            <div class="text-xs font-bold text-touron-red uppercase tracking-wider mt-1">Inversión Inicial</div>
                         </div>
                     </div>
                     <ul class="space-y-3 text-sm">
-                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span>Equipo con CPU AMD & GPU NVIDIA</span>
-                            <span class="font-bold text-green-600">8.000€</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-sync text-blue-400 mr-2"></i>Mantenimiento</span>
+                            <span class="font-semibold">200€ / año</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span>Almacenamiento NAS 5TB SSD</span>
-                            <span class="font-bold text-green-600">400€</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-hdd text-blue-400 mr-2"></i>Almacenamiento</span>
+                            <span class="font-semibold">Incluido</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span>Sistema UPS (Opcional)</span>
-                            <span class="font-bold text-green-600">500€</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-shield-alt text-blue-400 mr-2"></i>Privacidad</span>
+                            <span class="font-semibold text-green-600">100% Local</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-blue-50 rounded font-bold">
-                            <span>TOTAL INVERSIÓN</span>
-                            <span class="text-blue-600">8.900€</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-microchip text-blue-400 mr-2"></i>GPU</span>
+                            <span class="font-semibold">NVIDIA RTX 5090</span>
+                        </li>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-desktop text-blue-400 mr-2"></i>Sistema</span>
+                            <span class="font-semibold">Windows / Linux</span>
                         </li>
                     </ul>
+                    <div class="mt-5 p-4 bg-blue-600/15 border border-blue-400/40 rounded-xl text-sm text-blue-800 font-semibold">
+                        Máxima autonomía y privacidad. Opción actual en producción. <span class="font-normal text-blue-700">La más limitada en capacidades de los agentes al depender de modelos locales.</span>
+                    </div>
                 </div>
-                
-                <!-- Costes de Explotación -->
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-orange-500 text-white p-3 rounded-lg">
-                            <i class="fas fa-sync text-xl"></i>
+
+                <!-- Opción 2: Hardware Local Solo API -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-indigo-500 card-hover">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-plug text-indigo-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-touron-blue">Hardware Local</h3>
+                                <span class="text-xs font-semibold text-indigo-600 uppercase tracking-wider">Solo inferencia API</span>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-bold text-lg">Costes de Explotación</h3>
-                            <p class="text-sm text-gray-600">Mantenimiento anual</p>
+                        <div class="text-right">
+                            <div class="text-2xl font-extrabold text-touron-blue">2.000–2.500€</div>
+                            <div class="text-xs font-bold text-touron-red uppercase tracking-wider mt-1">Inversión Inicial</div>
                         </div>
                     </div>
                     <ul class="space-y-3 text-sm">
-                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span>Consumo eléctrico (Sin paneles)</span>
-                            <span class="font-bold text-yellow-600">400€/año</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-sync text-indigo-400 mr-2"></i>Mantenimiento</span>
+                            <span class="font-semibold">200€/año + coste API</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span>Mantenimiento hardware</span>
-                            <span class="font-bold text-yellow-600">200€/año</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-hdd text-indigo-400 mr-2"></i>Almacenamiento</span>
+                            <span class="font-semibold">Incluido</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span>Licencias Software</span>
-                            <span class="font-bold text-yellow-600">250€/año</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-shield-alt text-indigo-400 mr-2"></i>Privacidad</span>
+                            <span class="font-semibold">Apps locales · IA en API</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-orange-50 rounded font-bold">
-                            <span>TOTAL ANUAL</span>
-                            <span class="text-orange-600">850€</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-microchip text-indigo-400 mr-2"></i>GPU</span>
+                            <span class="font-semibold text-green-600">No necesaria</span>
+                        </li>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-desktop text-indigo-400 mr-2"></i>Sistema</span>
+                            <span class="font-semibold">Windows / Linux</span>
                         </li>
                     </ul>
+                    <div class="mt-5 p-4 bg-indigo-600/15 border border-indigo-400/40 rounded-xl text-sm text-indigo-800 font-semibold">
+                        Menor inversión inicial. <span class="font-normal text-indigo-700">Capacidades de agentes equivalentes a la nube, con el hardware bajo control de Touron. Los datos de inferencia pasan por el proveedor de API.</span>
+                    </div>
                 </div>
-                
-                <!-- Dedicación de Personal -->
-                <div class="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="bg-green-500 text-white p-3 rounded-lg">
-                            <i class="fas fa-users text-xl"></i>
+
+                <!-- Opción 3: Cloud AWS -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-orange-500 card-hover">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-cloud text-orange-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-touron-blue">Cloud Amazon Web Services</h3>
+                                <span class="text-xs font-semibold text-orange-600 uppercase tracking-wider">Modelos locales + API</span>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="font-bold text-lg">Dedicación de Personal</h3>
-                            <p class="text-sm text-gray-600">Horas mensuales (Orientativas)</p>
+                        <div class="text-right">
+                            <div class="text-2xl font-extrabold text-touron-blue">0€</div>
+                            <div class="text-xs font-bold text-touron-red uppercase tracking-wider mt-1">Sin Inversión Inicial</div>
                         </div>
                     </div>
                     <ul class="space-y-3 text-sm">
-                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span>Luis Conde (Sistemas)</span>
-                            <span class="font-bold text-blue-600">20h/mes</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-sync text-orange-400 mr-2"></i>Coste mensual</span>
+                            <span class="font-semibold">525 – 1.215€ / mes</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span>Personal Operaciones</span>
-                            <span class="font-bold text-blue-600">5h/mes</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-hdd text-orange-400 mr-2"></i>Almacenamiento</span>
+                            <span class="font-semibold">74€ / TB / mes</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded">
-                            <span>Revisión calidad (variado)</span>
-                            <span class="font-bold text-blue-600">5h/mes</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-shield-alt text-orange-400 mr-2"></i>Privacidad</span>
+                            <span class="font-semibold">Entorno cloud</span>
                         </li>
-                        <li class="flex justify-between items-center p-2 bg-green-50 rounded font-bold">
-                            <span>TOTAL HORAS</span>
-                            <span class="text-green-600">30h/mes</span>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-microchip text-orange-400 mr-2"></i>GPU</span>
+                            <span class="font-semibold">NVIDIA L40S 48GB</span>
+                        </li>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-desktop text-orange-400 mr-2"></i>Sistema</span>
+                            <span class="font-semibold">Linux (Ubuntu)</span>
                         </li>
                     </ul>
+                    <div class="mt-5 p-4 bg-orange-500/10 border border-orange-400/40 rounded-xl text-sm text-orange-800 font-semibold">
+                        Máxima potencia de cómputo sin inversión inicial. <span class="font-normal text-orange-700">Coste mensual variable según permanencia: 1.215€/mes bajo demanda · 765€/mes (1 año) · 525€/mes (3 años).</span>
+                    </div>
+                </div>
+
+                <!-- Opción 4: Cloud Azure -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 border-t-4 border-cyan-500 card-hover">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-cyan-100 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-cloud text-cyan-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-touron-blue">Cloud Azure</h3>
+                                <span class="text-xs font-semibold text-cyan-600 uppercase tracking-wider">Tenant Touron · Solo API</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-extrabold text-touron-blue">0€</div>
+                            <div class="text-xs font-bold text-touron-red uppercase tracking-wider mt-1">Sin Inversión Inicial</div>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-sync text-cyan-400 mr-2"></i>Coste mensual</span>
+                            <span class="font-semibold">65 – 120€/mes + API</span>
+                        </li>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-hdd text-cyan-400 mr-2"></i>Almacenamiento</span>
+                            <span class="font-semibold">70€ / TB / mes</span>
+                        </li>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-shield-alt text-cyan-400 mr-2"></i>Privacidad</span>
+                            <span class="font-semibold">Tenant propio Touron</span>
+                        </li>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-microchip text-cyan-400 mr-2"></i>GPU</span>
+                            <span class="font-semibold text-green-600">No necesaria</span>
+                        </li>
+                        <li class="flex justify-between items-center p-2 bg-gray-50 rounded-lg">
+                            <span class="text-gray-600"><i class="fas fa-desktop text-cyan-400 mr-2"></i>Sistema</span>
+                            <span class="font-semibold">Linux</span>
+                        </li>
+                    </ul>
+                    <div class="mt-5 p-4 bg-cyan-500/10 border border-cyan-400/40 rounded-xl text-sm text-cyan-800 font-semibold">
+                        Opción más económica en cloud. <span class="font-normal text-cyan-700">Integración directa con el entorno Microsoft 365 de Touron. La inferencia se produce en los servidores de Microsoft dentro del tenant de Touron.</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Nota: Costes API de inferencia externa -->
+            <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <i class="fas fa-info-circle text-blue-500 text-xl"></i>
+                    <h3 class="font-bold text-blue-800">Referencia de costes de inferencia externa (API)</h3>
+                </div>
+                <p class="text-sm text-blue-700 mb-4">Estimación para <strong>20 usuarios activos</strong> consumiendo <strong>3.000.000 tokens / usuario / mes</strong> (uso intensivo). Aplica a las opciones que usan inferencia vía API.</p>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                    <div class="bg-white rounded-lg p-3 text-center border border-blue-100">
+                        <div class="text-xs text-gray-500 mb-1">GPT-4o mini</div>
+                        <div class="font-bold text-green-600">13,25€ / mes</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-3 text-center border border-blue-100">
+                        <div class="text-xs text-gray-500 mb-1">GPT-4.1 mini</div>
+                        <div class="font-bold text-green-600">17,65€ / mes</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-3 text-center border border-blue-100">
+                        <div class="text-xs text-gray-500 mb-1">o4-mini</div>
+                        <div class="font-bold text-yellow-600">97,15€ / mes</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-3 text-center border border-blue-100">
+                        <div class="text-xs text-gray-500 mb-1">GPT-4.1</div>
+                        <div class="font-bold text-orange-600">176,65€ / mes</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-3 text-center border border-blue-100">
+                        <div class="text-xs text-gray-500 mb-1">GPT-4o</div>
+                        <div class="font-bold text-orange-600">221,20€ / mes</div>
+                    </div>
+                </div>
+
+                <!-- Fila 2: Generación de imágenes -->
+                <div class="mt-4 pt-4 border-t border-blue-200">
+                    <p class="text-sm text-blue-700 mb-3"><strong>Generación de imágenes</strong> — calidad alta · 1024×1024 · precio por imagen</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-white rounded-lg p-3 text-center border border-blue-100">
+                            <div class="text-xs text-gray-500 mb-1">gpt-image-1-mini</div>
+                            <div class="font-bold text-green-600">~0,03€ / imagen</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-center border border-blue-100">
+                            <div class="text-xs text-gray-500 mb-1">gpt-image-1.5</div>
+                            <div class="font-bold text-yellow-600">~0,12€ / imagen</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-center border border-blue-100">
+                            <div class="text-xs text-gray-500 mb-1">gpt-image-1</div>
+                            <div class="font-bold text-orange-600">~0,15€ / imagen</div>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 text-center border border-blue-100">
+                            <div class="text-xs text-gray-500 mb-1">gpt-image-2</div>
+                            <div class="font-bold text-orange-600">~0,19€ / imagen</div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -783,735 +968,57 @@
         </div>
     </section>
 
-    <!-- Sección Desarrollo -->
-    <section id="antigravity" class="py-20 bg-slate-900 text-white px-6 scroll-reveal">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col items-center text-center mb-16">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg">
-                        <i class="fas fa-code text-white text-xl"></i>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-tight">Plataforma de Desarrollo Multi-Stack (VS Code)</h2>
-                </div>
-                <p class="text-blue-200 text-lg md:text-xl font-medium max-w-3xl uppercase tracking-wider">Creación de Skills y Funciones IA</p>
-                <div class="h-1 w-32 bg-gradient-to-r from-blue-500 to-purple-500 mt-6 rounded-full"></div>
-            </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Skill de Análisis de Reparaciones -->
-                <div class="antigravity-gradient p-8 rounded-2xl card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-wrench text-blue-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Skill: Taller</h3>
-                    </div>
-                    <p class="text-sm text-gray-300 mb-6">
-                        Análisis y optimización de averias.
-                    </p>
-                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
-                        <div class="text-purple-400 mb-2">// Skill creada en VS Code</div>
-                        <span class="text-gray-500">skill:</span> analyze_repair_patterns<br>
-                        <span class="text-gray-500">input:</span> {modelo, horas_uso, historial}<br>
-                        <span class="text-gray-500">output:</span> <br>
-                        <span class="text-green-400">→ predict_failure_types()</span><br>
-                        <span class="text-green-400">→ recommend_repair_procedure()</span><br>
-                        <span class="text-green-400">→ generate_work_order()</span>
-                    </div>
-                    <div class="mt-4 flex items-center gap-2">
-                        <span class="text-xs bg-blue-600/30 px-2 py-1 rounded-full border border-blue-400/30">
-                            <i class="fas fa-plug mr-1"></i>Integrado en Ollama
-                        </span>
-                        <span class="text-xs bg-green-600/30 px-2 py-1 rounded-full border border-green-400/30">
-                            <i class="fas fa-check mr-1"></i>Activo en WebUI
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Función de Gestión de Stock -->
-                <div class="antigravity-gradient p-8 rounded-2xl card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-warehouse text-green-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Función: Stock Optimizer</h3>
-                    </div>
-                    <p class="text-sm text-gray-300 mb-6">
-                        Optimización automática de inventario.
-                    </p>
-                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
-                        <div class="text-purple-400 mb-2">// Function VS Code</div>
-                        <span class="text-gray-500">function:</span> optimize_inventory<br>
-                        <span class="text-gray-500">triggers:</span> [sales_data, repair_requests]<br>
-                        <span class="text-gray-500">actions:</span> <br>
-                        <span class="text-cyan-400">• analyze_demand_patterns()</span><br>
-                        <span class="text-cyan-400">• calculate_optimal_stock()</span><br>
-                        <span class="text-cyan-400">• auto_generate_orders()</span>
-                    </div>
-                    <div class="mt-4 flex items-center gap-2">
-                        <span class="text-xs bg-orange-600/30 px-2 py-1 rounded-full border border-orange-400/30">
-                            <i class="fas fa-clock mr-1"></i>Ejecución automática
-                        </span>
-                        <span class="text-xs bg-purple-600/30 px-2 py-1 rounded-full border border-purple-400/30">
-                            <i class="fas fa-chart-line mr-1"></i>Dashboard en WebUI
-                        </span>
-                    </div>
-                </div>
-
-                <!-- API Connector para Mercury -->
-                <div class="antigravity-gradient p-8 rounded-2xl card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-link text-orange-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Connector: Agencia SEUR</h3>
-                    </div>
-                    <p class="text-sm text-gray-300 mb-6">
-                        Conector directo con agencias de envio para trazabilidad en tiempo real.
-                    </p>
-                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
-                        <div class="text-purple-400 mb-2">// API Connector</div>
-                        <span class="text-gray-500">connector:</span> seur_api<br>
-                        <span class="text-gray-500">endpoints:</span> <br>
-                        <span class="text-yellow-400">• GET /location/spain</span><br>
-                        <span class="text-yellow-400">• REALTIME /location/status</span><br>
-                        <span class="text-gray-500">auth:</span> API_KEY_SECURE
-                    </div>
-                    <div class="mt-4 flex items-center gap-2">
-                        <span class="text-xs bg-red-600/30 px-2 py-1 rounded-full border border-red-400/30">
-                            <i class="fas fa-sync mr-1"></i>Sync continuo
-                        </span>
-                        <span class="text-xs bg-blue-600/30 px-2 py-1 rounded-full border border-blue-400/30">
-                            <i class="fas fa-database mr-1"></i>Base datos local
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Workflow de Análisis de Ventas -->
-                <div class="antigravity-gradient p-8 rounded-2xl card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-chart-line text-purple-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Dashboard Interactivo</h3>
-                    </div>
-                    <p class="text-sm text-gray-300 mb-6">
-                        Creación de dashboards interactivos o micro CRM's filtrados.
-                    </p>
-                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
-                        <div class="text-purple-400 mb-2">// Create Dashboard</div>
-                        <span class="text-gray-500">trigger:</span> daily_sales_report<br>
-                        <span class="text-gray-500">steps:</span> <br>
-                        <span class="text-emerald-400">1. aggregate_sales_data()</span><br>
-                        <span class="text-emerald-400">2. identify_trends()</span><br>
-                        <span class="text-emerald-400">3. generate_insights()</span><br>
-                        <span class="text-emerald-400">4. create_interactions()</span>
-                    </div>
-                    <div class="mt-4 flex items-center gap-2">
-                        <span class="text-xs bg-green-600/30 px-2 py-1 rounded-full border border-green-400/30">
-                            <i class="fas fa-calendar mr-1"></i>Dashboard interactivo
-                        </span>
-                        <span class="text-xs bg-cyan-600/30 px-2 py-1 rounded-full border border-cyan-400/30">
-                            <i class="fas fa-file-alt mr-1"></i>Reportes PDF
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Skill de Atención Cliente -->
-                <div class="antigravity-gradient p-8 rounded-2xl card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-users text-cyan-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Aplicativo: CRM Logística</h3>
-                    </div>
-                    <p class="text-sm text-gray-300 mb-6">
-                        Aplicativo completo (Desplegado en Local), tipo CRM para trazar pedidos con agencias en tiempo real.
-                    </p>
-                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
-                        <div class="text-purple-400 mb-2">// Loading CRM-APP (Logística)</div>
-                        <span class="text-gray-500">knowledge_base:</span> crm_complete<br>
-                        <span class="text-gray-500">capabilities:</span> <br>
-                        <span class="text-pink-400">• api_connection_seur()</span><br>
-                        <span class="text-pink-400">• tracking_status()</span><br>
-                        <span class="text-pink-400">• support_ticket_creation()</span><br>
-                        <span class="text-pink-400">• alerts_module()</span>
-                    </div>
-                    <div class="mt-4 flex items-center gap-2">
-                        <span class="text-xs bg-purple-600/30 px-2 py-1 rounded-full border border-purple-400/30">
-                            <i class="fas fa-comments mr-1"></i>Chat en WebUI
-                        </span>
-                        <span class="text-xs bg-yellow-600/30 px-2 py-1 rounded-full border border-yellow-400/30">
-                            <i class="fas fa-robot mr-1"></i>24/7 disponible
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Data Processor Históricos -->
-                <div class="antigravity-gradient p-8 rounded-2xl card-hover">
-                    <div class="flex items-center gap-3 mb-4">
-                        <i class="fas fa-database text-emerald-400 text-2xl"></i>
-                        <h3 class="text-xl font-bold text-blue-400 uppercase tracking-tight">Deep-Learning: Histórico</h3>
-                    </div>
-                    <p class="text-sm text-gray-300 mb-6">
-                        Procesamiento masivo de datos históricos para el entrenamiento de los modelos IA locales.
-                    </p>
-                    <div class="bg-black/60 rounded-lg p-4 font-mono text-[9px]">
-                        <div class="text-purple-400 mb-2">// Data Pipeline</div>
-                        <span class="text-gray-500">source:</span> [sales_db, repairs_db, inventory_db]<br>
-                        <span class="text-gray-500">processing:</span> <br>
-                        <span class="text-blue-400">• extract_historical_patterns()</span><br>
-                        <span class="text-blue-400">• normalize_data()</span><br>
-                        <span class="text-blue-400">• train_local_model()</span><br>
-                        <span class="text-blue-400">• update_knowledge_base()</span>
-                    </div>
-                    <div class="mt-4 flex items-center gap-2">
-                        <span class="text-xs bg-blue-600/30 px-2 py-1 rounded-full border border-blue-400/30">
-                            <i class="fas fa-brain mr-1"></i>Entrenamiento IA
-                        </span>
-                        <span class="text-xs bg-red-600/30 px-2 py-1 rounded-full border border-red-400/30">
-                            <i class="fas fa-shield-alt mr-1"></i>Datos locales
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Panel de Integración -->
-            <div class="mt-12 bg-gradient-to-r from-purple-900/50 to-blue-900/50 rounded-2xl p-8 border border-purple-500/30">
-                <h3 class="text-2xl font-bold text-center mb-8 text-purple-300">Integración VS Code → Ollama → OpenWeb UI</h3>
-                
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-black/40 rounded-lg p-6 border border-purple-500/30">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-code text-white"></i>
-                            </div>
-                            <h4 class="font-bold text-purple-300">Antigravity</h4>
-                        </div>
-                        <ul class="text-sm text-gray-300 space-y-2">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-arrow-right text-purple-400 mt-1 text-xs"></i>
-                                <span>Creación de skills, funciones, etc.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-arrow-right text-purple-400 mt-1 text-xs"></i>
-                                <span>Conectar API's (ERP, Web Search, Mercury)</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-arrow-right text-purple-400 mt-1 text-xs"></i>
-                                <span>Automatizar workflows</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-black/40 rounded-lg p-6 border border-blue-500/30">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-robot text-white"></i>
-                            </div>
-                            <h4 class="font-bold text-blue-300">Ollama</h4>
-                        </div>
-                        <ul class="text-sm text-gray-300 space-y-2">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-sync text-blue-400 mt-1 text-xs"></i>
-                                <span>Importar skills y funciones</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-sync text-blue-400 mt-1 text-xs"></i>
-                                <span>Entrenar con datos Touron</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-sync text-blue-400 mt-1 text-xs"></i>
-                                <span>Ejecutar inferencias locales</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-black/40 rounded-lg p-6 border border-green-500/30">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center">
-                                <i class="fas fa-window-maximize text-white"></i>
-                            </div>
-                            <h4 class="font-bold text-green-300">OpenWeb UI</h4>
-                        </div>
-                        <ul class="text-sm text-gray-300 space-y-2">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-400 mt-1 text-xs"></i>
-                                <span>Interfaz intuitiva y dinámica</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-400 mt-1 text-xs"></i>
-                                <span>Acceso a todos los modelos personalizados</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-400 mt-1 text-xs"></i>
-                                <span>Resultados y feedback en tiempo real</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Implementación por Departamentos -->
-    <section id="casos" class="py-20 bg-gray-100 px-6 border-y border-gray-200 scroll-reveal">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center gap-2 mb-4">
-                    <div class="w-12 h-0.5 bg-touron-red"></div>
-                    <i class="fas fa-building text-touron-blue text-2xl"></i>
-                    <div class="w-12 h-0.5 bg-touron-red"></div>
-                </div>
-                <h2 class="text-3xl md:text-4xl font-bold text-touron-blue uppercase tracking-tight">Casos de Uso por Departamento</h2>
-                <p class="text-gray-600 text-lg md:text-xl font-medium mt-2 italic">Ejemplos orientativos, el límite lo ponemos nosotros.</p>
-                <div class="h-1.5 w-32 bg-touron-red mx-auto mt-6 rounded-full"></div>
-            </div>
-            
-            <!-- Agrupación por Temáticas: Operaciones -->
-            <div class="mb-12">
-                <h3 class="text-2xl font-bold text-touron-blue mb-8 text-center">Taller & Logística</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Taller -->
-                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg">
-                        <div class="dept-visual bg-gradient-to-br from-blue-50 to-blue-100">
-                            <div class="flex flex-col gap-2 w-full px-4 relative z-10">
-                                <div class="bg-white p-2 rounded-lg shadow-sm border border-blue-200 text-[8px]">
-                                    <span class="text-red-600 font-bold">ANÁLISIS: Q4 2024</span>
-                                    <div class="text-gray-600 mt-1">→ Mayoría averías sensor presión</div>
-                                    <div class="text-xs text-blue-600 mt-1">Recomendación: más stock</div>
-                                </div>
-                                <div class="bg-touron-blue p-2 rounded shadow text-white text-[8px]">
-                                    <div class="font-bold mb-1">Tendencias:</div>
-                                    <div>• Verado 200: aumento reparaciones</div>
-                                    <div>• Falla común: J2-K3</div>
-                                    <div>• Optimización tiempos activa</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Taller</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Análisis de Reparaciones</h3>
-                        <ul class="text-gray-600 space-y-2 text-xs flex-grow">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Cruce histórico:</strong> años de reparaciones</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Patrones de avería:</strong> por modelo/horas uso</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Predicción stock:</strong> recambios necesarios</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Optimización:</strong> tiempos reparación</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Recambios -->
-                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg">
-                        <div class="dept-visual bg-gradient-to-br from-orange-50 to-orange-100">
-                            <div class="w-full px-4 relative z-10 flex items-center justify-center h-full">
-                                <div class="text-center bg-white p-3 rounded-lg shadow-lg">
-                                    <div class="text-lg font-bold text-gray-700 mb-1">ANÁLISIS STOCK</div>
-                                    <div class="bg-orange-100 inline-block px-3 py-1 rounded-full border border-orange-300 text-[8px] font-semibold">
-                                        Optimización Almacén
-                                    </div>
-                                    <div class="mt-2 text-sm text-green-600 font-bold">Reducción stock activa</div>
-                                    <div class="text-xs text-gray-600 mt-1">Rotación mejorada activa</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Recambios</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Optimización de Inventario</h3>
-                        <ul class="text-gray-600 space-y-2 text-xs flex-grow">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Análisis demanda:</strong> por histórico ventas</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Localización óptima:</strong> stock por almacén</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Predicción:</strong> necesidades trimestrales</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Cross-docking:</strong> rutas de distribución</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Almacén - CON TUS CAMBIOS -->
-                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg">
-                        <div class="dept-visual bg-gradient-to-br from-yellow-50 to-orange-100">
-                            <div class="w-full px-4 relative z-10">
-                                <div class="bg-white p-3 rounded-lg shadow-lg border border-orange-200 text-[8px]">
-                                    <div class="flex justify-between font-bold mb-2">
-                                        <span>LOGÍSTICA OPTIMIZADA</span>
-                                        <span class="text-green-600 font-bold">Análisis Logístico</span>
-                                    </div>
-                                    <div class="space-y-1 mb-2">
-                                        <div class="flex justify-between"><span>Patrones picking:</span><span class="text-orange-600">tipo producto × volumen</span></div>
-                                        <div class="flex justify-between"><span>Optimización rutas:</span><span class="text-blue-600">GPS × urgencias × tráfico</span></div>
-                                        <div class="flex justify-between"><span>Demanda predicha:</span><span class="text-purple-600">stock dinámico ML</span></div>
-                                        <div class="flex justify-between"><span>Cross-docking:</span><span class="text-green-600">reducción tiempos 70%</span></div>
-                                    </div>
-                                    <div class="bg-orange-50 text-orange-700 text-center p-1 rounded font-bold">
-                                        Eficiencia logística mejorada
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Almacén</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Análisis Logístico</h3>
-                        <ul class="text-gray-600 space-y-2 text-xs flex-grow">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Patrones picking:</strong> tipo producto × volumen</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Optimización rutas:</strong> GPS × urgencias × tráfico</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Demanda predicha:</strong> stock dinámico ML</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Cross-docking:</strong> reducción tiempos 70%</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECCIÓN FINANZAS Y RRHH -->
-            <div class="mb-12">
-                <h3 class="text-2xl font-bold text-touron-blue mb-8 text-center">Finanzas y RRHH</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Finanzas & RRHH Principal -->
-                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg">
-                        <div class="dept-visual bg-gradient-to-br from-purple-50 to-indigo-100">
-                            <div class="w-full px-4 relative z-10">
-                                <div class="bg-white p-3 rounded-lg shadow-lg border border-indigo-200 text-[8px]">
-                                    <div class="flex justify-between font-bold mb-2">
-                                        <span class="text-indigo-600">GESTIÓN INTELIGENTE</span>
-                                        <span class="text-green-500 font-semibold">IA POWERED</span>
-                                    </div>
-                                    <div class="space-y-1 mb-2">
-                                        <div class="flex justify-between"><span>Optimización gastos:</span><span class="text-purple-600">Outliers detectados</span></div>
-                                        <div class="flex justify-between"><span>Cribado CVs:</span><span class="text-blue-600">Matching 95%</span></div>
-                                        <div class="flex justify-between"><span>Talento:</span><span class="text-emerald-600">Scoring predictivo activo</span></div>
-                                    </div>
-                                    <div class="bg-indigo-50 text-indigo-700 text-center p-1 rounded font-bold">
-                                        Auditoría continua en tiempo real
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Finanzas & RRHH</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Gestión Inteligente</h3>
-                        <ul class="text-gray-600 space-y-2 text-xs flex-grow">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Optimización gastos:</strong> Outliers × anomalías facturación</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Cribado CVs:</strong> NLP × adecuación técnica semántica</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Búsqueda talento:</strong> Scoring predictivo candidatos pasivos</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Auditoría continua:</strong> Big Data OPEX vs. presupuestos</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Optimización de Gastos -->
-                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg">
-                        <div class="dept-visual bg-gradient-to-br from-green-50 to-emerald-100">
-                            <div class="w-full px-4 relative z-10">
-                                <div class="bg-white p-3 rounded-lg shadow-lg border border-emerald-200 text-[8px]">
-                                    <div class="flex justify-between font-bold mb-2">
-                                        <span class="text-emerald-600">ANÁLISIS FINANCIERO</span>
-                                        <span class="text-green-500 font-semibold">Q4 2024</span>
-                                    </div>
-                                    <div class="space-y-1 mb-2">
-                                        <div class="flex justify-between"><span>ROI optimización:</span><span class="text-green-600 font-bold">+23%</span></div>
-                                        <div class="flex justify-between"><span>Anomalías detectadas:</span><span class="text-orange-600">15 casos</span></div>
-                                        <div class="flex justify-between"><span>Ahorro estimado:</span><span class="text-blue-600 font-bold">€45.000</span></div>
-                                    </div>
-                                    <div class="bg-emerald-50 text-emerald-700 text-center p-1 rounded font-bold">
-                                        Predicción 2025: Mejora continua
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Finanzas</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Control de Gestión</h3>
-                        <ul class="text-gray-600 space-y-2 text-xs flex-grow">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Detección automática:</strong> anomalías facturación</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Análisis predictivo:</strong> flujos caja mensuales</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Optimización costes:</strong> identificación outliers</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Reporting:</strong> dashboards tiempo real</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Gestión de Talento -->
-                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg">
-                        <div class="dept-visual bg-gradient-to-br from-blue-50 to-cyan-100">
-                            <div class="w-full px-4 relative z-10">
-                                <div class="bg-white p-3 rounded-lg shadow-lg border border-cyan-200 text-[8px]">
-                                    <div class="flex justify-between font-bold mb-2">
-                                        <span class="text-cyan-600">GESTIÓN TALENTO</span>
-                                        <span class="text-blue-500 font-semibold">AI HR</span>
-                                    </div>
-                                    <div class="space-y-1 mb-2">
-                                        <div class="flex justify-between"><span>CVs procesados:</span><span class="text-green-600 font-bold">847</span></div>
-                                        <div class="flex justify-between"><span>Matching correcto:</span><span class="text-blue-600">94%</span></div>
-                                        <div class="flex justify-between"><span>Tiempo reducción:</span><span class="text-purple-600 font-bold">-72%</span></div>
-                                    </div>
-                                    <div class="bg-cyan-50 text-cyan-700 text-center p-1 rounded font-bold">
-                                        Talento predictivo activo
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">RRHH</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Analíticas de Reclutamiento</h3>
-                        <ul class="text-gray-600 space-y-2 text-xs flex-grow">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Cribado semántico:</strong> análisis NLP CVs</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Scoring predictivo:</strong> candidatos pasivos</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Matching automático:</strong> puesto × perfil</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Segmentación:</strong> talento por competencias</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Agrupación Comercial y Marketing -->
-            <div>
-                <h3 class="text-2xl font-bold text-touron-blue mb-8 text-center">Comercial y Marketing</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Postventa -->
-                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg">
-                        <div class="dept-visual bg-gradient-to-br from-emerald-50 to-emerald-100">
-                            <div class="w-full px-4 relative z-10">
-                                <div class="bg-white p-3 rounded-lg shadow-lg border border-emerald-200 text-[8px]">
-                                    <div class="flex justify-between mb-2">
-                                        <span class="font-bold text-emerald-600">CLIENTES VIP</span>
-                                        <span class="text-orange-500 font-semibold">TOP 5%</span>
-                                    </div>
-                                    <div class="space-y-1">
-                                        <div class="flex justify-between"><span>Marina del Sur:</span><span class="font-bold">Ventas destacadas</span></div>
-                                        <div class="flex justify-between"><span>Club Náutico:</span><span class="font-bold">Ventas destacadas</span></div>
-                                        <div class="bg-emerald-100 text-emerald-600 text-center p-1 rounded font-bold mt-2">
-                                            Mejora en retención activa
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Postventa</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Análisis de Clientes</h3>
-                        <ul class="text-gray-600 space-y-2 text-xs flex-grow">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Segmentación:</strong> clientes por volumen/ranking</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Historial:</strong> servicios/reparaciones por cliente</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Patrones:</strong> tendencias de consumo</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Predicción:</strong> próximas necesidades servicio</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Comercial -->
-                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg">
-                        <div class="dept-visual bg-gradient-to-br from-blue-50 to-indigo-100">
-                            <div class="w-full px-4 relative z-10">
-                                <div class="bg-white p-3 rounded-lg shadow-xl border border-blue-200">
-                                    <div class="text-[8px] space-y-2">
-                                        <div class="flex justify-between font-bold"><span>CAMPAÑA 2024:</span><span class="text-blue-600">Ventas destacadas</span></div>
-                                        <div class="flex justify-between"><span>Motorización más vendida:</span><span class="font-bold">Verado 150 XL</span></div>
-                                        <div class="flex justify-between"><span>ROI marketing:</span><span class="text-green-600 font-bold">Resultados positivos</span></div>
-                                        <div class="bg-blue-50 text-blue-700 text-center p-1 rounded font-bold mt-2">
-                                            Calificación de prospectos excelente
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Comercial</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Análisis de Ventas</h3>
-                        <ul class="text-gray-600 space-y-2 text-xs flex-grow">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Cruce datos:</strong> ventas × campañas × clientes</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Tendencias:</strong> modelos por temporada/zona</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>ROI análisis:</strong> efectividad campañas</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Precios óptimos:</strong> por segmento cliente</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Marketing -->
-                    <div class="bg-white p-6 rounded-2xl border-2 border-gray-200 card-hover shadow-lg">
-                        <div class="dept-visual bg-gradient-to-br from-purple-50 to-pink-100">
-                            <div class="w-full px-4 relative z-10">
-                                <div class="bg-white p-3 rounded-lg shadow-lg border border-purple-200 text-[8px]">
-                                    <div class="flex justify-between font-bold mb-2">
-                                        <span>CONTENT ANALYTICS</span>
-                                        <span class="text-purple-600 font-bold">AI-GENERATED</span>
-                                    </div>
-                                    <div class="space-y-1 mb-2">
-                                        <div class="flex justify-between"><span>Engagement:</span><span class="text-pink-600">Mejora notable</span></div>
-                                        <div class="flex justify-between"><span>Conversión:</span><span class="text-purple-600">Resultados positivos</span></div>
-                                    </div>
-                                    <div class="bg-purple-50 text-purple-700 text-center p-1 rounded font-bold">
-                                        Diseños generados continuamente
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-4 flex items-center gap-2">
-                            <span class="text-touron-red text-[10px] font-bold uppercase tracking-widest">Marketing</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-touron-blue mb-3 uppercase tracking-tight">Generación de Contenido</h3>
-                        <ul class="text-gray-600 space-y-2 text-xs flex-grow">
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Análisis de Mercado:</strong> Sector Náutico</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Diseños IA:</strong> banners/brochures/videos</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>Personalización:</strong> por segmento cliente</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fas fa-check text-green-500 mt-1"></i>
-                                <span><strong>A/B testing:</strong> optimización campañas</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impacto -->
+    <!-- Sostenibilidad y Autonomía -->
     <section id="impacto" class="eco-gradient text-white py-24 px-6 relative scroll-reveal">
         <div class="max-w-6xl mx-auto relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-extrabold mb-4 uppercase tracking-tighter">Sostenibilidad y Autonomía</h2>
                 <p class="text-xl opacity-90">Alineación con los valores de Touron.</p>
             </div>
-            
+
             <div class="grid md:grid-cols-2 gap-12 items-center">
+
+                <!-- Columna izquierda: 4 valores -->
                 <div class="space-y-8">
+
                     <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
                         <div class="flex items-start">
-                            <div class="bg-yellow-400 p-3 rounded-lg mr-4 text-2xl">
+                            <div class="bg-yellow-400 p-3 rounded-lg mr-4 text-2xl flex-shrink-0">
                                 <i class="fas fa-solar-panel text-touron-blue"></i>
                             </div>
                             <div>
                                 <h4 class="font-bold text-xl mb-2 uppercase tracking-tight">Energía Renovable</h4>
                                 <p class="opacity-90 leading-relaxed">
-                                    Alimentado por <strong class="text-yellow-300">paneles solares de Touron</strong>. 
-                                    Coste operativo mínimo y sin emisiones.
+                                    En la opción de hardware local, el servidor puede alimentarse con los <strong class="text-yellow-300">paneles solares de Touron</strong>, reduciendo el coste operativo a prácticamente cero y eliminando emisiones.
                                 </p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
                         <div class="flex items-start">
-                            <div class="bg-green-400 p-3 rounded-lg mr-4 text-2xl">
+                            <div class="bg-green-400 p-3 rounded-lg mr-4 text-2xl flex-shrink-0">
                                 <i class="fas fa-shield-alt text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-xl mb-2 uppercase tracking-tight">Privacidad LOPD</h4>
+                                <h4 class="font-bold text-xl mb-2 uppercase tracking-tight">Privacidad por Diseño</h4>
                                 <p class="opacity-90 leading-relaxed">
-                                    <strong class="text-green-300">Independencia de datos</strong>. 
-                                    La información permanece en la red local.
+                                    La plataforma está diseñada para que los datos nunca salgan del entorno controlado por Touron: <strong class="text-green-300">red local en hardware propio</strong> o tenant privado en Azure. Cumplimiento LOPD en cualquier opción de despliegue.
                                 </p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
                         <div class="flex items-start">
-                            <div class="bg-blue-400 p-3 rounded-lg mr-4 text-2xl">
+                            <div class="bg-blue-400 p-3 rounded-lg mr-4 text-2xl flex-shrink-0">
                                 <i class="fas fa-infinity text-white"></i>
                             </div>
                             <div>
-                                <h4 class="font-bold text-xl mb-2 uppercase tracking-tight">Independencia</h4>
+                                <h4 class="font-bold text-xl mb-2 uppercase tracking-tight">Sin Lock-in</h4>
                                 <p class="opacity-90 leading-relaxed">
-                                    <strong class="text-blue-300">Sin suscripciones</strong>. 
-                                    Control total sin dependencias externas.
+                                    El código, los modelos, las bases de conocimiento y los agentes son <strong class="text-blue-300">propiedad de Touron</strong>. La plataforma es portable: si mañana queremos cambiar de proveedor cloud o volver a hardware local, podemos hacerlo sin perder nada.
                                 </p>
                             </div>
                         </div>
@@ -1519,16 +1026,15 @@
 
                     <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 border-purple-400/50">
                         <div class="flex items-start">
-                            <div class="bg-purple-400 p-3 rounded-lg mr-4 text-2xl">
+                            <div class="bg-purple-400 p-3 rounded-lg mr-4 text-2xl flex-shrink-0">
                                 <i class="fas fa-user-graduate text-white"></i>
                             </div>
                             <div>
                                 <h4 class="font-bold text-xl mb-2 uppercase tracking-tight">Conocimiento Interno</h4>
                                 <p class="opacity-90 leading-relaxed">
-                                    El conocimiento técnico y experiencia necesaria ya existe en la empresa 
-                                    a través de Luis Conde, eliminando costes de consultoría externa.
+                                    El conocimiento técnico y la experiencia necesaria ya existen en la empresa a través de Luis Conde, eliminando costes de consultoría externa y otros proveedores.
                                 </p>
-                                <div class="mt-3 flex items-center gap-2">
+                                <div class="mt-3 flex items-center gap-2 flex-wrap">
                                     <span class="text-xs bg-purple-600/30 px-2 py-1 rounded-full border border-purple-400/30">
                                         <i class="fas fa-check mr-1"></i>0€/h en consultoría
                                     </span>
@@ -1540,51 +1046,135 @@
                         </div>
                     </div>
                 </div>
-                
+
+                <!-- Columna derecha: comparativa de control por opción -->
                 <div class="relative">
                     <div class="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20">
                         <div class="text-center mb-8">
-                            <span class="text-sm font-bold text-emerald-400 uppercase tracking-widest block mb-3">Autonomía Touron</span>
-                            <div class="text-6xl font-bold mb-2">100%</div>
-                            <div class="text-lg opacity-90">Infraestructura Privada</div>
+                            <span class="text-sm font-bold text-emerald-400 uppercase tracking-widest block mb-3">Comparativa de Despliegue</span>
+                            <div class="text-lg opacity-80">Privacidad · Control · Coste</div>
                         </div>
-                        
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="font-semibold">Seguridad</span>
-                                <span class="text-emerald-400 font-bold">
-                                    <i class="fas fa-check-circle mr-1"></i>
-                                    Máxima
-                                </span>
-                            </div>
-                            <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
-                                <div class="bg-gradient-to-r from-emerald-400 to-green-400 h-full rounded-full"></div>
-                            </div>
-                            
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="font-semibold">Control</span>
-                                <span class="text-blue-400 font-bold">
-                                    <i class="fas fa-check-circle mr-1"></i>
-                                    Total
-                                </span>
-                            </div>
-                            <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
-                                <div class="bg-gradient-to-r from-blue-400 to-cyan-400 h-full rounded-full"></div>
+
+                        <div class="space-y-8">
+
+                            <!-- Hardware Local -->
+                            <div>
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div class="w-3 h-3 rounded-full bg-blue-400"></div>
+                                    <span class="text-sm font-bold uppercase tracking-wide">Hardware Local</span>
+                                </div>
+                                <div class="space-y-2 text-xs">
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Privacidad</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-blue-400 to-blue-300 h-full rounded-full" style="width:100%"></div>
+                                        </div>
+                                        <span class="text-blue-300 font-bold w-12 text-right">100%</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Control</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-blue-400 to-blue-300 h-full rounded-full" style="width:100%"></div>
+                                        </div>
+                                        <span class="text-blue-300 font-bold w-12 text-right">Total</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Coste</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-emerald-400 to-green-300 h-full rounded-full" style="width:20%"></div>
+                                        </div>
+                                        <span class="text-emerald-300 font-bold w-12 text-right">Mínimo</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Escalab.</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-blue-400 to-blue-300 h-full rounded-full" style="width:15%"></div>
+                                        </div>
+                                        <span class="text-blue-300 font-bold w-12 text-right">Baja</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="flex justify-between items-center text-sm">
-                                <span class="font-semibold">Conocimiento</span>
-                                <span class="text-purple-400 font-bold">
-                                    <i class="fas fa-check-circle mr-1"></i>
-                                    Interno
-                                </span>
+                            <!-- Cloud Azure -->
+                            <div>
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div class="w-3 h-3 rounded-full bg-cyan-400"></div>
+                                    <span class="text-sm font-bold uppercase tracking-wide">Cloud Azure <span class="text-cyan-400 font-normal normal-case">(Tenant Touron)</span></span>
+                                </div>
+                                <div class="space-y-2 text-xs">
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Privacidad</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-cyan-400 to-cyan-300 h-full rounded-full" style="width:85%"></div>
+                                        </div>
+                                        <span class="text-cyan-300 font-bold w-12 text-right">Alta</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Control</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-cyan-400 to-cyan-300 h-full rounded-full" style="width:100%"></div>
+                                        </div>
+                                        <span class="text-cyan-300 font-bold w-12 text-right">Total</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Coste</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-yellow-400 to-yellow-300 h-full rounded-full" style="width:40%"></div>
+                                        </div>
+                                        <span class="text-yellow-300 font-bold w-12 text-right">Bajo</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Escalab.</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-cyan-400 to-cyan-300 h-full rounded-full" style="width:100%"></div>
+                                        </div>
+                                        <span class="text-cyan-300 font-bold w-12 text-right">Máxima</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
-                                <div class="bg-gradient-to-r from-purple-400 to-pink-400 h-full rounded-full"></div>
+
+                            <!-- Cloud AWS -->
+                            <div>
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div class="w-3 h-3 rounded-full bg-orange-400"></div>
+                                    <span class="text-sm font-bold uppercase tracking-wide">Cloud AWS</span>
+                                </div>
+                                <div class="space-y-2 text-xs">
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Privacidad</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-orange-400 to-orange-300 h-full rounded-full" style="width:65%"></div>
+                                        </div>
+                                        <span class="text-orange-300 font-bold w-12 text-right">Media</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Control</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-orange-400 to-orange-300 h-full rounded-full" style="width:100%"></div>
+                                        </div>
+                                        <span class="text-orange-300 font-bold w-12 text-right">Total</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Coste</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-red-400 to-red-300 h-full rounded-full" style="width:70%"></div>
+                                        </div>
+                                        <span class="text-red-300 font-bold w-12 text-right">Medio</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="opacity-70 w-20">Escalab.</span>
+                                        <div class="flex-1 mx-3 bg-white/10 h-2 rounded-full overflow-hidden">
+                                            <div class="bg-gradient-to-r from-orange-400 to-orange-300 h-full rounded-full" style="width:100%"></div>
+                                        </div>
+                                        <span class="text-orange-300 font-bold w-12 text-right">Máxima</span>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -1664,7 +1254,7 @@
                     <ul class="text-sm space-y-2 opacity-80">
                         <li><i class="fas fa-database text-green-400 mr-2"></i>Análisis masivo de datos</li>
                         <li><i class="fas fa-chart-line text-green-400 mr-2"></i>LLM's completamente personalizados</li>
-                        <li><i class="fas fa-search text-green-400 mr-2"></i>Compatible con conectores API</li>
+                        <li><i class="fas fa-search text-green-400 mr-2"></i>Compatible con conectores API y MCP</li>
                         <li><i class="fas fa-brain text-green-400 mr-2"></i>Creación de Contenido y Aplicativos</li>
                     </ul>
                 </div>
@@ -1704,6 +1294,9 @@
     </script>
 </body>
 </html>
+
+
+
 
 
 
